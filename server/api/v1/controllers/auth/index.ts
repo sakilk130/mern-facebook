@@ -3,6 +3,7 @@ import User from '../../../../models/User';
 import * as Yup from 'yup';
 import bcrypt from 'bcrypt';
 import { validateUserName } from '../../../../helpers/validation';
+import { generateToken } from '../../../../helpers/token';
 
 export const register = async (
   req: Request,
@@ -51,9 +52,10 @@ export const register = async (
     });
 
     await user.save();
+    const token = generateToken({ id: user._id }, '1d');
     return res.status(201).json({
       success: true,
-      data: user,
+      data: { user, token },
       message: 'Registration successful',
     });
   } catch (error) {
@@ -75,4 +77,8 @@ export const register = async (
       });
     }
   }
+};
+
+export const login = async (_req: Request, _res: Response) => {
+  console.log(':');
 };
