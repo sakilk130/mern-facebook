@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import bcrypt from 'bcrypt';
 import { validateUserName } from '../../../../helpers/validation';
 import { generateToken } from '../../../../helpers/token';
+import { sendValidationEmail } from '../../../../helpers/mailer';
 
 export const register = async (
   req: Request,
@@ -53,6 +54,10 @@ export const register = async (
 
     await user.save();
     const token = generateToken({ id: user._id }, '1d');
+    const url = `${process.env.BASE_URL}/auth/verify-email?token=${token}`;
+
+    sendValidationEmail(email, firstName + ' ' + lastName, url);
+
     return res.status(201).json({
       success: true,
       data: { user, token },
