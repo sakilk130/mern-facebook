@@ -8,3 +8,7 @@ export const generateToken = (
     expiresIn: expired,
   });
 };
+
+export const verifyToken = (token: string) => {
+  return jwt.verify(token, process.env.JWT_SECRET!);
+};
