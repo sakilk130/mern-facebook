@@ -126,6 +126,67 @@ export const activate = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (_req: Request, _res: Response) => {
-  console.log(':');
+export const login = async (
+  req: Request,
+  res: Response
+): Promise<Response<any, Record<string, any>> | undefined> => {
+  try {
+    const { email, password } = req.body;
+    const schema = Yup.object().shape({
+      email: Yup.string()
+        .email('Email is invalid')
+        .required('Email is required'),
+      password: Yup.string().required('Password is required'),
+    });
+    await schema.validate(req.body, { abortEarly: false });
+    const findEmail = await User.findOne({ email });
+    if (!findEmail) {
+      return res.status(404).json({
+        success: false,
+        error: 'Email or password is incorrect',
+      });
+    }
+    const isMatch = await bcrypt.compare(password, findEmail.password);
+    if (!isMatch) {
+      return res.status(404).json({
+        success: false,
+        error: 'Email or password is incorrect',
+      });
+    }
+    const token = generateToken({ id: findEmail._id }, '1d');
+    return res.status(200).json({
+      success: true,
+      data: {
+        user: {
+          id: findEmail._id,
+          firstName: findEmail.firstName,
+          lastName: findEmail.lastName,
+          userName: findEmail.userName,
+          email: findEmail.email,
+          verified: findEmail.verified,
+        },
+        token,
+      },
+      message: 'Login successful',
+    });
+  } catch (error) {
+    if (error instanceof Yup.ValidationError) {
+      let errors: Record<string, string[]> = {};
+      //TODO: type check
+      error.inner.forEach((err: any) => {
+        if (err?.path) {
+          errors[err?.path] = err.errors;
+        }
+      });
+      return res.status(400).json({
+        success: false,
+        error: errors,
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
 };
