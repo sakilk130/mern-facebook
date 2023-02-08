@@ -3,8 +3,9 @@ import User from '../../../../models/User';
 import * as Yup from 'yup';
 import bcrypt from 'bcrypt';
 import { validateUserName } from '../../../../helpers/validation';
-import { generateToken } from '../../../../helpers/token';
+import { generateToken, verifyToken } from '../../../../helpers/token';
 import { sendValidationEmail } from '../../../../helpers/mailer';
+import { JwtPayload } from 'jsonwebtoken';
 
 export const register = async (
   req: Request,
@@ -12,7 +13,6 @@ export const register = async (
 ): Promise<Response<any, Record<string, any>> | undefined> => {
   try {
     const { firstName, lastName, email, password, gender, dob } = req.body;
-
     const schema = Yup.object().shape({
       firstName: Yup.string().required('First name is required'),
       lastName: Yup.string().required('Last name is required'),
@@ -27,9 +27,7 @@ export const register = async (
         bYear: Yup.number().required('Birth year is required'),
       }),
     });
-
     await schema.validate(req.body, { abortEarly: false });
-
     const exitingUser = await User.findOne({ email });
     if (exitingUser) {
       return res.status(400).json({
@@ -37,11 +35,9 @@ export const register = async (
         error: 'User already exists',
       });
     }
-
     const hashedPassword = await bcrypt.hash(password, 12);
     let tempUsername = firstName + lastName;
     let newUsername = await validateUserName(tempUsername);
-
     const user = new User({
       firstName,
       lastName,
@@ -51,22 +47,30 @@ export const register = async (
       gender,
       dob,
     });
-
     await user.save();
     const token = generateToken({ id: user._id }, '1d');
     const url = `${process.env.BASE_URL}/auth/verify-email?token=${token}`;
-
     sendValidationEmail(email, firstName + ' ' + lastName, url);
-
     return res.status(201).json({
       success: true,
-      data: { user, token },
-      message: 'Registration successful',
+      data: {
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          email: user.email,
+          verified: user.verified,
+        },
+        token,
+      },
+      message: 'Registration successful | Please verify your email',
     });
   } catch (error) {
     if (error instanceof Yup.ValidationError) {
       let errors: Record<string, string[]> = {};
-      error.inner.forEach((err) => {
+      //TODO: type check
+      error.inner.forEach((err: any) => {
         if (err?.path) {
           errors[err?.path] = err.errors;
         }
@@ -81,6 +85,44 @@ export const register = async (
         error: error.message,
       });
     }
+  }
+};
+
+export const activate = async (req: Request, res: Response) => {
+  try {
+    const { token } = req.body;
+    const decoded = await verifyToken(token);
+    if (!decoded) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid or expired token',
+      });
+    }
+    const { id } = decoded as JwtPayload;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    if (user.verified) {
+      return res.status(400).json({
+        success: false,
+        error: 'User already verified',
+      });
+    }
+    user.verified = true;
+    await user.save();
+    return res.status(200).json({
+      success: true,
+      message: 'User verified successfully',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
 
