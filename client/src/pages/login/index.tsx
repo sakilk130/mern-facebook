@@ -1,11 +1,16 @@
+import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
+import { useState } from 'react';
+import ReactModal from 'react-modal';
 import { Link } from 'react-router-dom';
 import PageTitle from '../../components/page-title';
-import styles from './styles/login.module.css';
-import { Form, FormikProvider, useFormik, Field, ErrorMessage } from 'formik';
+import LoginPageFooter from './components/footer';
+import RegisterCardModal from './components/register';
 import { initialValues, validationSchema } from './formik/formik';
-import LoginPageFooter from './components/LoginPageFooter';
+import styles from './styles/login.module.css';
 
 const Login = () => {
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  ReactModal.setAppElement('#root');
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -14,9 +19,35 @@ const Login = () => {
     },
   });
 
+  const modalStyles = {
+    overlay: {
+      borderRadius: '10px',
+      border: 'none',
+    },
+    content: {
+      borderRadius: '10px',
+      maxHeight: '500px',
+      maxWidth: '500px',
+      border: 'none',
+      boxShadow: '0 0 5px var(--shadow-1)',
+      margin: 'auto',
+    },
+  };
+
+  const handleShow = () => {
+    setShowRegisterModal(true);
+  };
+
+  const handleClose = () => {
+    setShowRegisterModal(false);
+  };
+
   return (
     <>
       <PageTitle title="Login | Facebook" />
+      <ReactModal isOpen={showRegisterModal} style={modalStyles}>
+        <RegisterCardModal onClose={handleClose} />
+      </ReactModal>
       <div className={styles.container}>
         <div className={styles.left}>
           <img
@@ -61,11 +92,17 @@ const Login = () => {
                     <ErrorMessage name="password" />
                   </div>
                 </div>
-                <button className={styles.loginBtn}>Log In</button>
+                <button type="submit" className={styles.loginBtn}>
+                  Log In
+                </button>
                 <div className={styles.forgotBtn}>
                   <Link to="/forgotten-password">Forgotten password?</Link>
                 </div>
-                <button className={styles.newAccountBtn}>
+                <button
+                  className={styles.newAccountBtn}
+                  type="button"
+                  onClick={handleShow}
+                >
                   Create New Account
                 </button>
               </div>
