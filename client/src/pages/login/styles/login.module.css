@@ -1,2 +1,139 @@
+h1 {
+  margin: 0px;
+}
 .container {
+  display: flex;
+  align-items: center;
+  padding: 2rem 5rem;
+  background-color: var(--bg-secondary);
+  height: 90vh;
+}
+.left {
+  padding: 0 1rem;
+  width: 50%;
+}
+.left h1 {
+  font-size: 1.7rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+.iconSvg {
+  width: 300px;
+}
+.right {
+  padding: 0 1rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 400px;
+  background-color: var(--bg-primary);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px var(--shadow-1);
+}
+.input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+.input input {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5rem;
+}
+.loginBtn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: var(--blue-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.loginBtn:hover {
+  background: var(--blue-color);
+  opacity: 0.9;
+}
+.forgotBtn {
+  margin-top: 1rem;
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: var(--bg-primary);
+  color: var(--blue-color);
+  cursor: pointer;
+  text-align: center;
+}
+.forgotBtn::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0.5rem 0;
+}
+.newAccountBtn {
+  margin-top: 1rem;
+  width: 200px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: var(--green-color);
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.newAccountBtn:hover {
+  background: var(--green-color);
+  opacity: 0.9;
+}
+.instruction {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem 1rem;
+  }
+  .left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .left h1 {
+    font-size: 1.5rem;
+  }
+  .right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .iconSvg {
+    width: 200px;
+  }
 }
