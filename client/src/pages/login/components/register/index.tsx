@@ -64,7 +64,7 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
             </div>
             <div className={styles.formInput}>
               <Field
-                type="text"
+                type="email"
                 name="email"
                 id="email"
                 placeholder="Email"
@@ -93,7 +93,6 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
                   <Field
                     as="select"
                     name="dob.bDate"
-                    id="month"
                     className={formik.errors.dob?.bDate && styles.redBorder}
                   >
                     {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
@@ -107,7 +106,6 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
                   <Field
                     as="select"
                     name="dob.bMonth"
-                    id="month"
                     className={formik.errors.dob?.bDate && styles.redBorder}
                   >
                     {months.map((month) => (
@@ -121,7 +119,6 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
                   <Field
                     as="select"
                     name="dob.bYear"
-                    id="month"
                     className={formik.errors.dob?.bDate && styles.redBorder}
                   >
                     {Array.from({ length: 100 }, (_, i) => currentYear - i).map(
@@ -134,7 +131,54 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
                   </Field>
                 </div>
               </div>
+              <div className={styles.errorMessage}>
+                <ErrorMessage name="dob.bDay" />
+                <ErrorMessage name="dob.bMonth" />
+                <ErrorMessage name="dob.bYear" />
+              </div>
             </div>
+            <div className={styles.gender}>
+              <label htmlFor="gender">Gender</label>
+              <div className={styles.genderWrap}>
+                <label htmlFor="female">
+                  <span>Female</span>
+                  <Field
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="Female"
+                  />
+                </label>
+                <label htmlFor="male">
+                  <span>Male</span>
+                  <Field type="radio" id="male" name="gender" value="Male" />
+                </label>
+                <label htmlFor="custom">
+                  <span>Custom</span>
+                  <Field
+                    type="radio"
+                    id="custom"
+                    name="gender"
+                    value="Custom"
+                  />
+                </label>
+              </div>
+              <div className={styles.errorMessage}>
+                <ErrorMessage name="gender" />
+              </div>
+            </div>
+            <p className={styles.notice}>
+              People who use our service may have uploaded your contact
+              information to Facebook. Learn more.
+            </p>
+            <p className={styles.notice}>
+              By clicking Sign Up, you agree to our Terms, Privacy Policy and
+              Cookies Policy. You may receive SMS notifications from us and can
+              opt out at any time.
+            </p>
+            <button type="submit" className={styles.submitBtn}>
+              Sign Up
+            </button>
           </div>
         </Form>
       </FormikProvider>

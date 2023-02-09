@@ -84,3 +84,56 @@ input:focus {
   padding: 0 0.5rem;
   border-radius: 5px;
 }
+.gender {
+  margin-top: 0.5rem;
+}
+.gender > label {
+  font-size: 13px;
+  color: var(--color-secondary);
+  margin-bottom: 0.3rem;
+}
+.genderWrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.genderWrap label {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+.genderWrap label > span {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.genderWrap label:hover {
+  background-color: var(--light-blue-color);
+}
+.notice {
+  color: var(--color-secondary);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  background-color: var(--green-color);
+  color: white;
+  cursor: pointer;
+  margin: 1rem auto;
+}
+.submitBtn:hover {
+  opacity: 0.9;
+}

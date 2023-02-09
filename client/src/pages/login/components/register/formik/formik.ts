@@ -23,7 +23,7 @@ export const initialValues: IFormValues = {
     bMonth: new Date().getMonth() + 1,
     bYear: new Date().getFullYear(),
   },
-  gender: '',
+  gender: 'Female',
 };
 
 export const validationSchema = Yup.object().shape({

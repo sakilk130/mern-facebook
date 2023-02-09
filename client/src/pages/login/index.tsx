@@ -26,7 +26,7 @@ const Login = () => {
     },
     content: {
       borderRadius: '10px',
-      maxHeight: '500px',
+      maxHeight: '570px',
       maxWidth: '500px',
       border: 'none',
       boxShadow: '0 0 5px var(--shadow-1)',
