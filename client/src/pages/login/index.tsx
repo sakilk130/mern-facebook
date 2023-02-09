@@ -42,7 +42,7 @@ const Login = () => {
         setError(data?.error ?? 'Something went wrong');
       }
     } catch (err: any) {
-      //TODO: fix any
+      //FIXME: fix any
       setLoading(false);
       if (err.response?.data?.error) {
         setError(err.response.data.error);

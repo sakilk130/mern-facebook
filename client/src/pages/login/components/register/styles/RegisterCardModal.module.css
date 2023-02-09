@@ -137,3 +137,23 @@ input:focus {
 .submitBtn:hover {
   opacity: 0.9;
 }
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.success {
+  margin-top: 1rem;
+  background-color: var(--green-color);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+.error {
+  margin-top: 1rem;
+  background-color: red;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}

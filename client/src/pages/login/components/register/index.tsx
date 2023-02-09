@@ -1,7 +1,9 @@
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { initialValues, validationSchema } from './formik/formik';
+import { PulseLoader } from 'react-spinners';
+import axiosInstance from '../../../../config/axios';
+import { initialValues, validationSchema, IFormValues } from './formik/formik';
 import styles from './styles/RegisterCardModal.module.css';
 import { months } from './utils';
 
@@ -11,15 +13,49 @@ interface RegisterCardModalProps {
 
 const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
   const currentYear = new Date().getFullYear();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
+
+  const onSubmit = async (values: IFormValues) => {
+    try {
+      setLoading(true);
+      const { data } = await axiosInstance.post('/auth/register', values);
+      setLoading(false);
+      if (data?.success) {
+        setSuccessMessage(data?.message);
+      } else {
+        setError(data?.error ?? 'Something went wrong');
+      }
+    } catch (err: any) {
+      // FIXME: fix any
+      setLoading(false);
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('Something went wrong');
+      }
+    }
+  };
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit,
     validationSchema,
     enableReinitialize: true,
   });
+
+  useEffect(() => {
+    if (successMessage) {
+      formik.resetForm();
+    }
+    if (error) {
+      setTimeout(() => {
+        setError('');
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [successMessage, error]);
 
   return (
     <>
@@ -176,8 +212,16 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
               Cookies Policy. You may receive SMS notifications from us and can
               opt out at any time.
             </p>
-            <button type="submit" className={styles.submitBtn}>
-              Sign Up
+            {error && <p className={styles.error}>{error}</p>}
+            {successMessage && (
+              <p className={styles.success}>{successMessage}</p>
+            )}
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={loading}
+            >
+              {loading ? <PulseLoader color="#fff" size={10} /> : 'Sign Up'}
             </button>
           </div>
         </Form>
