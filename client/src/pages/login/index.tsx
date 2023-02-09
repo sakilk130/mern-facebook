@@ -3,6 +3,7 @@ import PageTitle from '../../components/page-title';
 import styles from './styles/login.module.css';
 import { Form, FormikProvider, useFormik, Field, ErrorMessage } from 'formik';
 import { initialValues, validationSchema } from './formik/formik';
+import LoginPageFooter from './components/LoginPageFooter';
 
 const Login = () => {
   const formik = useFormik({
@@ -75,6 +76,7 @@ const Login = () => {
           </p>
         </div>
       </div>
+      <LoginPageFooter />
     </>
   );
 };
