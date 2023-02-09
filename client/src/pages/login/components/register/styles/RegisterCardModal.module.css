@@ -1,0 +1,159 @@
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.closeBtn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+hr {
+  border: 1px solid var(--border-color);
+  margin: 1rem 0;
+}
+.formInput {
+  display: flex;
+}
+.formInput input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  background-color: var(--bg-secondary);
+}
+.redBorder {
+  border: 1px solid red !important;
+}
+.errorMessage {
+  color: red;
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+input:focus {
+  border: none !important;
+  outline: 1px solid var(--blue-color) !important;
+}
+.formInputInRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.formInputInRow input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  background-color: var(--bg-secondary);
+}
+.dob label {
+  font-size: 13px;
+  color: var(--color-secondary);
+  margin-bottom: 0.3rem;
+}
+.dateMonthYearWrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.dateMonthYearWrap div {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 5px;
+}
+.dateMonthYearWrap div select {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: white;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+}
+.gender {
+  margin-top: 0.5rem;
+}
+.gender > label {
+  font-size: 13px;
+  color: var(--color-secondary);
+  margin-bottom: 0.3rem;
+}
+.genderWrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.genderWrap label {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+.genderWrap label > span {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.genderWrap label:hover {
+  background-color: var(--light-blue-color);
+}
+.notice {
+  color: var(--color-secondary);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+.submitBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0 0.5rem;
+  background-color: var(--green-color);
+  color: white;
+  cursor: pointer;
+  margin: 1rem auto;
+}
+.submitBtn:hover {
+  opacity: 0.9;
+}
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.success {
+  margin-top: 1rem;
+  background-color: var(--green-color);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+.error {
+  margin-top: 1rem;
+  background-color: red;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
