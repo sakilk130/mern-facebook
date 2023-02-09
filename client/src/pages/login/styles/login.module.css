@@ -44,7 +44,7 @@ h1 {
   border: 1px solid var(--border-color);
   outline: none;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border-radius: 5px;
 }
 .input input {
@@ -111,6 +111,14 @@ h1 {
 .instruction {
   margin-top: 2rem;
   text-align: center;
+}
+.redBorder {
+  border: 1px solid red;
+}
+.fieldError {
+  color: red;
+  font-size: 0.8rem;
+  padding-top: 0.2rem;
 }
 
 @media screen and (max-width: 768px) {
