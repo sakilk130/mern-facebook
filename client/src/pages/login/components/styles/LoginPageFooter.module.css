@@ -1,0 +1,35 @@
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  margin-top: 2rem;
+}
+.language {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--color-secondary);
+}
+.language a:hover {
+  color: var(--blue-color);
+  text-decoration: underline;
+}
+.plus {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .footerContainer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
