@@ -1,24 +1,62 @@
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
+import { Dispatch } from 'redux';
 import PageTitle from '../../components/page-title';
+import axiosInstance from '../../config/axios';
+import { UserActionTypes, UserActionEnum } from '../../redux/user/types';
 import LoginPageFooter from './components/footer';
 import RegisterCardModal from './components/register';
-import { initialValues, validationSchema } from './formik/formik';
+import { IFormValues, initialValues, validationSchema } from './formik/formik';
 import styles from './styles/login.module.css';
+import Cookie from 'js-cookie';
 
 const Login = () => {
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
   ReactModal.setAppElement('#root');
+  const navigate = useNavigate();
+  const dispatch: Dispatch<UserActionTypes> = useDispatch();
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>('');
+
+  const onSubmit = async (values: IFormValues) => {
+    try {
+      setLoading(true);
+      const { data } = await axiosInstance.post('/auth/login', values);
+      setLoading(false);
+      if (data?.success) {
+        if (data?.data?.user?.verified) {
+          dispatch({
+            type: UserActionEnum.LOGIN,
+            payload: data?.data,
+          });
+          Cookie.set('user', JSON.stringify(data?.data));
+          navigate('/');
+        } else {
+          setError('Please verify your email');
+        }
+      } else {
+        setError(data?.error ?? 'Something went wrong');
+      }
+    } catch (err: any) {
+      //TODO: fix any
+      setLoading(false);
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else {
+        setError('Something went wrong');
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit,
   });
-
   const modalStyles = {
     overlay: {
       borderRadius: '10px',
@@ -33,14 +71,19 @@ const Login = () => {
       margin: 'auto',
     },
   };
-
   const handleShow = () => {
     setShowRegisterModal(true);
   };
-
   const handleClose = () => {
     setShowRegisterModal(false);
   };
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError('');
+      }, 3000);
+    }
+  }, [error]);
 
   return (
     <>
@@ -59,7 +102,6 @@ const Login = () => {
             Facebook helps you connect and share with the people in your life.
           </h1>
         </div>
-
         <div className={styles.right}>
           <FormikProvider value={formik}>
             <Form>
@@ -92,8 +134,13 @@ const Login = () => {
                     <ErrorMessage name="password" />
                   </div>
                 </div>
-                <button type="submit" className={styles.loginBtn}>
-                  Log In
+                {error && <p className={styles.error}>{error}</p>}
+                <button
+                  type="submit"
+                  className={`${styles.loginBtn}`}
+                  disabled={loading}
+                >
+                  {loading ? <PulseLoader color="#fff" size={10} /> : 'Log In'}
                 </button>
                 <div className={styles.forgotBtn}>
                   <Link to="/forgotten-password">Forgotten password?</Link>
