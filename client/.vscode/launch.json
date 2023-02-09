@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "client",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:3000"
+    }
+  ],
+  "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
+}

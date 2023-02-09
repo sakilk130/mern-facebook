@@ -1,0 +1,46 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#232E3D",
+    "titleBar.activeBackground": "#304155",
+    "titleBar.activeForeground": "#F9FAFC"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "cSpell.words": [
+    "codenames",
+    "colour",
+    "commitlint",
+    "datacentres",
+    "devs",
+    "Eagleson",
+    "esbenp",
+    "Etyo",
+    "Kasper",
+    "leerob",
+    "nextauth",
+    "nextjs",
+    "npmrc",
+    "pravatar",
+    "preload",
+    "prettierignore",
+    "prettierrc",
+    "regexes",
+    "rgba",
+    "scaleable",
+    "signin",
+    "Supabase",
+    "superpowered",
+    "tailwindcss",
+    "typeof",
+    "typesafe",
+    "unoptimized",
+    "userinfo",
+    "Vercel",
+    "Viewports",
+    "WEBP"
+  ]
+}
