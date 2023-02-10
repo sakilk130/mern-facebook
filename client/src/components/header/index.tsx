@@ -31,8 +31,9 @@ const Header = () => {
         <Link to="/" className={cls(styles.middleIcon)}>
           <Friends color={color} />
         </Link>
-        <Link to="/" className={cls(styles.middleIcon)}>
+        <Link to="/" className={cls(styles.middleIcon, styles.watch)}>
           <Watch color={color} />
+          <div className={cls(styles.watchNotification)}>9+</div>
         </Link>
         <Link to="/" className={cls(styles.middleIcon)}>
           <Market color={color} />

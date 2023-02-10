@@ -63,3 +63,16 @@ header {
 .middleIcon:hover {
   background-color: var(--bg-forth);
 }
+.watch {
+  position: relative;
+}
+.watchNotification {
+  position: absolute;
+  top: 3px;
+  left: 1.9rem;
+  background: #e41e3f;
+  border-radius: 50px;
+  padding: 1px 5px;
+  font-size: 13px;
+  color: #fff;
+}
