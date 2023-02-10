@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie';
+import { IUser } from '../../interfaces/user';
 import { UserActionTypes, UserActionEnum } from './types';
 
-const initialState = Cookies.get('user')
+const initialState: IUser = Cookies.get('user')
   ? JSON.parse(Cookies.get('user')!)
   : null;
 
