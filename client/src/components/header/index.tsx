@@ -1,4 +1,5 @@
 import cls from 'classnames';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IUser } from '../../interfaces/user';
@@ -16,30 +17,31 @@ import {
   Search,
   Watch,
 } from '../../svg';
+import SearchMenu from './components/search-menu';
 import styles from './styles/header.module.css';
 
-interface IHeader {
-  setVisible: (value: boolean) => void;
-}
-
-const Header = ({ setVisible }: IHeader) => {
-  const { user } = useSelector((state: AppState) => state.user as IUser);
+const Header = () => {
+  const [showSearchMenu, setShowSearchMenu] = useState(false);
   const color = '#65676b';
-  const handleSearch = () => {
-    setVisible(true);
-  };
+  const { user } = useSelector((state: AppState) => state.user as IUser);
 
+  const handleSearchMenu = () => {
+    setShowSearchMenu(true);
+  };
   return (
     <header>
       <div className={styles.headerLeft}>
         <Link to="/">
           <Logo />
         </Link>
-        <div className={styles.search} onClick={handleSearch}>
+        <div className={styles.search} onClick={handleSearchMenu}>
           <Search color={color} />
           <input type="text" placeholder="Search Facebook" />
         </div>
       </div>
+      {showSearchMenu && (
+        <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
+      )}
       <div className={styles.headerMiddle}>
         <Link to="/" className={cls(styles.middleIcon, styles.active)}>
           <HomeActive />

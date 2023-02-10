@@ -5,10 +5,9 @@ header {
   width: 100%;
   box-shadow: 1px 8px 15px -7px var(--shadow-2);
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1.3fr 1fr;
   color: var(--color-primary);
   padding: 0.5rem 0;
-  z-index: 100;
 }
 .headerLeft {
   display: flex;
@@ -34,9 +33,6 @@ header {
   height: 100%;
   border: none;
 }
-.search input::placeholder {
-  transform: translateY(-1px);
-}
 .search input:focus {
   border: none !important;
   outline: none !important;
@@ -44,7 +40,7 @@ header {
 .headerMiddle {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 5px;
   justify-content: space-between;
 }
 .middleIcon {
@@ -79,17 +75,17 @@ header {
 .headerRight {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 5px;
   justify-content: flex-end;
   padding: 0 1rem;
 }
 .profile {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.5rem;
 }
 .profile:hover {
   background-color: var(--bg-third);
