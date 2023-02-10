@@ -1,6 +1,6 @@
 import Logo from './logo';
 import HomeActive from './homeActive';
-import Friends from './friends.js';
+import Friends from './friends';
 import Watch from './watch';
 import Market from './market';
 import Gaming from './gaming';
