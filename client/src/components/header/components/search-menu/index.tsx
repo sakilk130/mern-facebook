@@ -17,6 +17,7 @@ const SearchMenu = ({ color, setShowSearchMenu }: ISearchMenu) => {
   useOutsideClick(menu, () => {
     setShowSearchMenu(false);
   });
+
   useEffect(() => {
     input?.current?.focus();
   }, []);

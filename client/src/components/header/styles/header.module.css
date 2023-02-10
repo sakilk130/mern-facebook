@@ -127,3 +127,6 @@ header {
   font-size: 13px;
   color: #fff;
 }
+.allMenuIcon {
+  position: relative;
+}

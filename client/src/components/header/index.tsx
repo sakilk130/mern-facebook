@@ -17,17 +17,24 @@ import {
   Search,
   Watch,
 } from '../../svg';
+import AllMenu from './components/all-menu';
 import SearchMenu from './components/search-menu';
 import styles from './styles/header.module.css';
 
 const Header = () => {
   const [showSearchMenu, setShowSearchMenu] = useState(false);
+  const [showAllMenu, setShowAllMenu] = useState(false);
+
   const color = '#65676b';
   const { user } = useSelector((state: AppState) => state.user as IUser);
 
   const handleSearchMenu = () => {
     setShowSearchMenu(true);
   };
+  const toggleAllMenu = () => {
+    setShowAllMenu((prev) => !prev);
+  };
+
   return (
     <header>
       <div className={styles.headerLeft}>
@@ -65,8 +72,11 @@ const Header = () => {
           <img src={user.picture} alt="" className={cls(styles.image)} />
           <span>{user?.firstName}</span>
         </Link>
-        <div className={cls(styles.headerRightIcon)}>
-          <Menu />
+        <div className={cls(styles.headerRightIcon, styles.allMenuIcon)}>
+          <div onClick={toggleAllMenu}>
+            <Menu />
+          </div>
+          {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
         </div>
         <div className={cls(styles.headerRightIcon)}>
           <Messenger />

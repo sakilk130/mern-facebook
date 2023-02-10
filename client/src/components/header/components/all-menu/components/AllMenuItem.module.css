@@ -1,0 +1,22 @@
+.allMenuContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.allMenuContainer img {
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+}
+.allMenuContainer:hover {
+  background-color: var(--bg-forth);
+}
+.allMenuName p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-secondary);
+}
