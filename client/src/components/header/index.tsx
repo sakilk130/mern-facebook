@@ -18,9 +18,16 @@ import {
 } from '../../svg';
 import styles from './styles/header.module.css';
 
-const Header = () => {
+interface IHeader {
+  setVisible: (value: boolean) => void;
+}
+
+const Header = ({ setVisible }: IHeader) => {
   const { user } = useSelector((state: AppState) => state.user as IUser);
   const color = '#65676b';
+  const handleSearch = () => {
+    setVisible(true);
+  };
 
   return (
     <header>
@@ -28,7 +35,7 @@ const Header = () => {
         <Link to="/">
           <Logo />
         </Link>
-        <div className={styles.search}>
+        <div className={styles.search} onClick={handleSearch}>
           <Search color={color} />
           <input type="text" placeholder="Search Facebook" />
         </div>
