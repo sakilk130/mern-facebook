@@ -1,4 +1,5 @@
 import { model, Schema } from 'mongoose';
+import { Relationship } from '../enums/relationship';
 
 const userSchema = new Schema(
   {
@@ -35,7 +36,8 @@ const userSchema = new Schema(
     picture: {
       type: String,
       trim: true,
-      default: 'default.jpg', //TODO: change this link
+      default:
+        'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png',
     },
     cover: {
       type: String,
@@ -118,12 +120,12 @@ const userSchema = new Schema(
       relationship: {
         type: String,
         enum: [
-          'Single',
-          'Married',
-          'Engaged',
-          'In a relationship',
-          "It's complicated",
-          'Divorce',
+          Relationship.Single,
+          Relationship.Married,
+          Relationship.Engaged,
+          Relationship.InARelationship,
+          Relationship.ItsComplicated,
+          Relationship.Divorce,
         ],
       },
       instagram: {
