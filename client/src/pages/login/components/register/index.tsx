@@ -30,10 +30,10 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
     } catch (err: any) {
       // FIXME: fix any
       setLoading(false);
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
+      if (typeof err.response?.data?.error === 'object') {
+        formik.setErrors(err.response?.data?.error);
       } else {
-        setError('Something went wrong');
+        setError(err.response?.data?.error ?? 'Something went wrong');
       }
     }
   };
