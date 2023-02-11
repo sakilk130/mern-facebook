@@ -19,11 +19,13 @@ import {
 } from '../../svg';
 import AllMenu from './components/all-menu';
 import SearchMenu from './components/search-menu';
+import UserMenu from './components/user-menu';
 import styles from './styles/header.module.css';
 
 const Header = () => {
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const color = '#65676b';
   const { user } = useSelector((state: AppState) => state.user as IUser);
@@ -34,7 +36,6 @@ const Header = () => {
   const toggleAllMenu = () => {
     setShowAllMenu((prev) => !prev);
   };
-
   return (
     <header>
       <div className={styles.headerLeft}>
@@ -86,7 +87,10 @@ const Header = () => {
           <div className={cls(styles.notificationCount)}>5</div>
         </div>
         <div className={cls(styles.headerRightIcon)}>
-          <ArrowDown color={color} />
+          <div onClick={() => setShowUserMenu((prev) => !prev)}>
+            <ArrowDown color={color} />
+          </div>
+          {showUserMenu && <UserMenu />}
         </div>
       </div>
     </header>

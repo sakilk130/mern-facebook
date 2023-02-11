@@ -1,0 +1,32 @@
+.hover:hover {
+  border-radius: 10px;
+  background: #d4d6da3a;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.backBtn {
+  padding: 10px;
+  border-radius: 50%;
+  background-color: var(--bg-forth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.userMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
+}
+.circle {
+  padding: 0.5rem;
+  background-color: var(--bg-third);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

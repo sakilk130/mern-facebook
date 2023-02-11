@@ -1,0 +1,38 @@
+.profileLink {
+  display: flex;
+  align-items: center;
+}
+.profileLink img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.profileLink h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.userMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
+}
+.circle {
+  padding: 0.5rem;
+  background-color: var(--bg-third);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userMenu {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+.hover:hover {
+  border-radius: 10px;
+  background: #d4d6da3a;
+}
