@@ -1,7 +1,8 @@
 import { model, Schema } from 'mongoose';
 import { Relationship } from '../enums/relationship';
+import { User } from '../interfaces/user';
 
-const userSchema = new Schema(
+const userSchema = new Schema<User>(
   {
     firstName: {
       type: String,
