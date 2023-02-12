@@ -62,7 +62,10 @@ const UserMenuItems = ({ onChangeVisible }: UserMenuItemsProps) => {
           </div>
         </div>
       </div>
-      <div className={cls(styles.userMenuItem, styles.hover)}>
+      <div
+        className={cls(styles.userMenuItem, styles.hover)}
+        onClick={() => onChangeVisible(UserProfile.DISPLAY_ACCESSIBILITY)}
+      >
         <div className={cls(styles.circle)}>
           <i className="dark_filled_icon"></i>
         </div>

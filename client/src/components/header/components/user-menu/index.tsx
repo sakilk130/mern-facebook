@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { UserProfile } from '../../../../enums/userProfile';
+import DisplayAndAccessibility from './components/ display-and-accessibility';
 import HelpSupport from './components/help-support';
 import SettingsAndPrivacy from './components/settings-and-privacy';
 import UserMenuItems from './components/user-menu-items';
@@ -15,7 +16,6 @@ const UserMenu = () => {
           <UserMenuItems onChangeVisible={setVisible} />
         </div>
       );
-
     case UserProfile.SETTINGS_AND_PRIVACY:
       return (
         <div className={styles.userMenuContainer}>
@@ -28,7 +28,12 @@ const UserMenu = () => {
           <HelpSupport onChangeVisible={setVisible} />
         </div>
       );
-
+    case UserProfile.DISPLAY_ACCESSIBILITY:
+      return (
+        <div className={styles.userMenuContainer}>
+          <DisplayAndAccessibility onChangeVisible={setVisible} />
+        </div>
+      );
     default:
       return (
         <div className={styles.userMenuContainer}>

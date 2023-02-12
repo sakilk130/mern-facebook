@@ -738,3 +738,12 @@
   height: 16px;
   background-position: 0 -60px;
 }
+.compact_icon {
+  background-image: url(../../../public/icons/icons38.png);
+  background-position: 0px -130px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
