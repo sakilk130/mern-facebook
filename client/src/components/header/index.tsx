@@ -51,20 +51,26 @@ const Header = () => {
         <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
       )}
       <div className={styles.headerMiddle}>
-        <Link to="/" className={cls(styles.middleIcon, styles.active)}>
+        <Link
+          to="/"
+          className={cls(styles.middleIcon, styles.active, styles.homeIcon)}
+        >
           <HomeActive />
         </Link>
         <Link to="/" className={cls(styles.middleIcon)}>
           <Friends color={color} />
         </Link>
-        <Link to="/" className={cls(styles.middleIcon, styles.watch)}>
+        <Link
+          to="/"
+          className={cls(styles.middleIcon, styles.watch, styles.videoIcon)}
+        >
           <Watch color={color} />
           <div className={cls(styles.watchNotification)}>9+</div>
         </Link>
-        <Link to="/" className={cls(styles.middleIcon)}>
+        <Link to="/" className={cls(styles.middleIcon, styles.marketIcon)}>
           <Market color={color} />
         </Link>
-        <Link to="/" className={cls(styles.middleIcon)}>
+        <Link to="/" className={cls(styles.middleIcon, styles.gamingIcon)}>
           <Gaming color={color} />
         </Link>
       </div>
@@ -79,7 +85,7 @@ const Header = () => {
           </div>
           {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
         </div>
-        <div className={cls(styles.headerRightIcon)}>
+        <div className={cls(styles.headerRightIcon, styles.messengerIcon)}>
           <Messenger />
         </div>
         <div className={cls(styles.headerRightIcon, styles.notification)}>
