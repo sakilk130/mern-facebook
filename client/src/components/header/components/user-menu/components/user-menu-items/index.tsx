@@ -48,14 +48,15 @@ const UserMenuItems = ({ onChangeVisible }: UserMenuItemsProps) => {
           </div>
         </div>
       </div>
-      <div className={cls(styles.userMenuItem, styles.hover)}>
+      <div
+        className={cls(styles.userMenuItem, styles.hover)}
+        onClick={() => onChangeVisible(UserProfile.HELP_AND_SUPPORT)}
+      >
         <div className={cls(styles.circle)}>
           <i className="help_filled_icon"></i>
         </div>
         <div className={cls(styles.userMenu)}>
-          <h4>
-            Help & Support <span>English (US)</span>
-          </h4>
+          <h4>Help & Support</h4>
           <div className="rArrow">
             <i className="right_icon"></i>
           </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { UserProfile } from '../../../../enums/userProfile';
+import HelpSupport from './components/help-support';
 import SettingsAndPrivacy from './components/settings-and-privacy';
 import UserMenuItems from './components/user-menu-items';
 import styles from './styles/user-menu.module.css';
@@ -19,6 +20,12 @@ const UserMenu = () => {
       return (
         <div className={styles.userMenuContainer}>
           <SettingsAndPrivacy onChangeVisible={setVisible} />
+        </div>
+      );
+    case UserProfile.HELP_AND_SUPPORT:
+      return (
+        <div className={styles.userMenuContainer}>
+          <HelpSupport onChangeVisible={setVisible} />
         </div>
       );
 
