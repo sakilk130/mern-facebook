@@ -130,3 +130,38 @@ header {
 .allMenuIcon {
   position: relative;
 }
+
+@media (max-width: 856px) {
+  .search input {
+    display: none;
+  }
+}
+
+@media (max-width: 856px) {
+  .gamingIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 694px) {
+  .marketIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 598px) {
+  .videoIcon {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .profile {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .homeIcon {
+    display: none;
+  }
+}

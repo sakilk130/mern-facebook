@@ -44,10 +44,10 @@ const Login = () => {
     } catch (err: any) {
       //FIXME: fix any
       setLoading(false);
-      if (err.response?.data?.error) {
-        setError(err.response.data.error);
+      if (typeof err.response?.data?.error === 'object') {
+        formik.setErrors(err.response?.data?.error);
       } else {
-        setError('Something went wrong');
+        setError(err.response?.data?.error ?? 'Something went wrong');
       }
     }
   };
@@ -111,11 +111,7 @@ const Login = () => {
                     formik.errors.email && styles.redBorder
                   }`}
                 >
-                  <Field
-                    type="email"
-                    placeholder="Email address"
-                    name="email"
-                  />
+                  <Field type="text" placeholder="Email address" name="email" />
                   <div className={styles.fieldError}>
                     <ErrorMessage name="email" />
                   </div>

@@ -19,11 +19,13 @@ import {
 } from '../../svg';
 import AllMenu from './components/all-menu';
 import SearchMenu from './components/search-menu';
+import UserMenu from './components/user-menu';
 import styles from './styles/header.module.css';
 
 const Header = () => {
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const color = '#65676b';
   const { user } = useSelector((state: AppState) => state.user as IUser);
@@ -34,7 +36,6 @@ const Header = () => {
   const toggleAllMenu = () => {
     setShowAllMenu((prev) => !prev);
   };
-
   return (
     <header>
       <div className={styles.headerLeft}>
@@ -50,20 +51,26 @@ const Header = () => {
         <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
       )}
       <div className={styles.headerMiddle}>
-        <Link to="/" className={cls(styles.middleIcon, styles.active)}>
+        <Link
+          to="/"
+          className={cls(styles.middleIcon, styles.active, styles.homeIcon)}
+        >
           <HomeActive />
         </Link>
         <Link to="/" className={cls(styles.middleIcon)}>
           <Friends color={color} />
         </Link>
-        <Link to="/" className={cls(styles.middleIcon, styles.watch)}>
+        <Link
+          to="/"
+          className={cls(styles.middleIcon, styles.watch, styles.videoIcon)}
+        >
           <Watch color={color} />
           <div className={cls(styles.watchNotification)}>9+</div>
         </Link>
-        <Link to="/" className={cls(styles.middleIcon)}>
+        <Link to="/" className={cls(styles.middleIcon, styles.marketIcon)}>
           <Market color={color} />
         </Link>
-        <Link to="/" className={cls(styles.middleIcon)}>
+        <Link to="/" className={cls(styles.middleIcon, styles.gamingIcon)}>
           <Gaming color={color} />
         </Link>
       </div>
@@ -78,7 +85,7 @@ const Header = () => {
           </div>
           {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
         </div>
-        <div className={cls(styles.headerRightIcon)}>
+        <div className={cls(styles.headerRightIcon, styles.messengerIcon)}>
           <Messenger />
         </div>
         <div className={cls(styles.headerRightIcon, styles.notification)}>
@@ -86,7 +93,10 @@ const Header = () => {
           <div className={cls(styles.notificationCount)}>5</div>
         </div>
         <div className={cls(styles.headerRightIcon)}>
-          <ArrowDown color={color} />
+          <div onClick={() => setShowUserMenu((prev) => !prev)}>
+            <ArrowDown color={color} />
+          </div>
+          {showUserMenu && <UserMenu setShowUserMenu={setShowUserMenu} />}
         </div>
       </div>
     </header>

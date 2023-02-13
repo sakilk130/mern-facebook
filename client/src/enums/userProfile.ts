@@ -1,0 +1,6 @@
+export enum UserProfile {
+  USER_MENU = 1,
+  SETTINGS_AND_PRIVACY = 2,
+  HELP_AND_SUPPORT = 3,
+  DISPLAY_ACCESSIBILITY = 4,
+}

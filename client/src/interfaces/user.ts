@@ -8,5 +8,5 @@ export interface IUser {
     verified: boolean;
     picture: string;
   };
-  token: string;
+  token?: string;
 }
