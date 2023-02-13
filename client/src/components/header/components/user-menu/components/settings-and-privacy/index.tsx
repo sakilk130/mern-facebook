@@ -1,14 +1,19 @@
 import cls from 'classnames';
+import { LegacyRef } from 'react';
 import { UserProfile } from '../../../../../../enums/userProfile';
 import styles from './styles/settings-and-privacy.module.css';
 
 interface SettingsAndPrivacyProps {
   onChangeVisible: (visible: UserProfile) => void;
+  userMenuRef: LegacyRef<HTMLDivElement> | undefined;
 }
 
-const SettingsAndPrivacy = ({ onChangeVisible }: SettingsAndPrivacyProps) => {
+const SettingsAndPrivacy = ({
+  onChangeVisible,
+  userMenuRef,
+}: SettingsAndPrivacyProps) => {
   return (
-    <>
+    <div ref={userMenuRef}>
       <div className={cls(styles.title)}>
         <div
           className={styles.backBtn}
@@ -58,7 +63,7 @@ const SettingsAndPrivacy = ({ onChangeVisible }: SettingsAndPrivacyProps) => {
         </div>
         <h4>Language</h4>
       </div>
-    </>
+    </div>
   );
 };
 

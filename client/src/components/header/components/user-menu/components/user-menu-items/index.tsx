@@ -1,4 +1,5 @@
 import cls from 'classnames';
+import { LegacyRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { UserProfile } from '../../../../../../enums/userProfile';
@@ -8,12 +9,17 @@ import styles from './styles/user-menu-items.module.css';
 
 interface UserMenuItemsProps {
   onChangeVisible: (visible: UserProfile) => void;
+  userMenuRef: LegacyRef<HTMLDivElement> | undefined;
 }
 
-const UserMenuItems = ({ onChangeVisible }: UserMenuItemsProps) => {
+const UserMenuItems = ({
+  onChangeVisible,
+  userMenuRef,
+}: UserMenuItemsProps) => {
   const { user } = useSelector((state: AppState) => state.user as IUser);
+
   return (
-    <>
+    <div ref={userMenuRef}>
       <Link to="/profile" className={cls(styles.profileLink, styles.hover)}>
         <img src={user.picture} alt={user.firstName} />
         <div>
@@ -82,7 +88,7 @@ const UserMenuItems = ({ onChangeVisible }: UserMenuItemsProps) => {
         </div>
         <h4>Logout</h4>
       </div>
-    </>
+    </div>
   );
 };
 

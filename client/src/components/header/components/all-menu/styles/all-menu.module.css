@@ -72,3 +72,21 @@
   background-color: var(--bg-forth);
   padding: 10px;
 }
+
+@media (max-width: 573px) {
+  .allMenu {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .allMenuContainer {
+    width: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .allMenuContainer {
+    width: 300px;
+  }
+}

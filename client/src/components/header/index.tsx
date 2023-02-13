@@ -96,7 +96,7 @@ const Header = () => {
           <div onClick={() => setShowUserMenu((prev) => !prev)}>
             <ArrowDown color={color} />
           </div>
-          {showUserMenu && <UserMenu />}
+          {showUserMenu && <UserMenu setShowUserMenu={setShowUserMenu} />}
         </div>
       </div>
     </header>
