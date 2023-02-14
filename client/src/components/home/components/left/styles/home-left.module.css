@@ -1,0 +1,29 @@
+.container {
+  position: fixed;
+  top: 70px;
+  left: 6px;
+  width: 300px;
+  max-height: 100vh;
+  overflow-y: auto;
+  color: var(--color-primary);
+  padding: 15px 0px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  gap: 10px;
+  border-radius: 10px;
+}
+.profile img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.profile p {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.profile:hover {
+  background-color: var(--bg-forth);
+}
