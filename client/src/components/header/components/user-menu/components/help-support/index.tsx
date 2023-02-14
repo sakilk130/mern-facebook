@@ -1,16 +1,14 @@
 import cls from 'classnames';
-import { LegacyRef } from 'react';
 import { UserProfile } from '../../../../../../enums/userProfile';
 import styles from './styles/help-support.module.css';
 
 interface HelpSupportProps {
   onChangeVisible: (visible: UserProfile) => void;
-  userMenuRef: LegacyRef<HTMLDivElement> | undefined;
 }
 
-const HelpSupport = ({ onChangeVisible, userMenuRef }: HelpSupportProps) => {
+const HelpSupport = ({ onChangeVisible }: HelpSupportProps) => {
   return (
-    <div ref={userMenuRef}>
+    <div>
       <div className={cls(styles.title)}>
         <div
           className={styles.backBtn}
