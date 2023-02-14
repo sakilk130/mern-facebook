@@ -1,25 +1,14 @@
 import cls from 'classnames';
-import { useRef } from 'react';
-import useOutsideClick from '../../../../hooks/useOutsideClick';
-import styles from './styles/all-menu.module.css';
-import { menu, create } from '../../../../data/allMenu';
+import { create, menu } from '../../../../data/allMenu';
 import { Search } from '../../../../svg';
 import AllMenuItem from './components/AllMenuItem';
+import styles from './styles/all-menu.module.css';
 
-interface IAllMenu {
-  setShowAllMenu: (showAllMenu: boolean) => void;
-}
-
-const AllMenu = ({ setShowAllMenu }: IAllMenu) => {
-  const allMenuRef = useRef(null);
+const AllMenu = () => {
   const color = '#65676b';
 
-  useOutsideClick(allMenuRef, () => {
-    setShowAllMenu(false);
-  });
-
   return (
-    <div className={cls(styles.allMenuContainer)} ref={allMenuRef}>
+    <div className={cls(styles.allMenuContainer)}>
       <h2 className={cls(styles.allMenuHeader)}>Menu</h2>
       <div className={cls(styles.allMenu)}>
         <div className={cls(styles.allMenuLeft)}>

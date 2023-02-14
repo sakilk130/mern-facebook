@@ -1,7 +1,8 @@
 import cls from 'classnames';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useOutsideClick from '../../hooks/useOutsideClick';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import {
@@ -23,6 +24,8 @@ import UserMenu from './components/user-menu';
 import styles from './styles/header.module.css';
 
 const Header = () => {
+  const allMenuRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -36,6 +39,13 @@ const Header = () => {
   const toggleAllMenu = () => {
     setShowAllMenu((prev) => !prev);
   };
+  useOutsideClick(allMenuRef, () => {
+    setShowAllMenu(false);
+  });
+  useOutsideClick(userMenuRef, () => {
+    setShowUserMenu(false);
+  });
+
   return (
     <header>
       <div className={styles.headerLeft}>
@@ -79,11 +89,17 @@ const Header = () => {
           <img src={user.picture} alt="" className={cls(styles.image)} />
           <span>{user?.firstName}</span>
         </Link>
-        <div className={cls(styles.headerRightIcon, styles.allMenuIcon)}>
-          <div onClick={toggleAllMenu}>
+        <div
+          className={cls(styles.headerRightIcon, styles.allMenuIcon)}
+          ref={allMenuRef}
+        >
+          <div
+            className={cls(showAllMenu ? styles.activeMenu : '')}
+            onClick={toggleAllMenu}
+          >
             <Menu />
           </div>
-          {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
+          {showAllMenu && <AllMenu />}
         </div>
         <div className={cls(styles.headerRightIcon, styles.messengerIcon)}>
           <Messenger />
@@ -92,11 +108,17 @@ const Header = () => {
           <Notifications />
           <div className={cls(styles.notificationCount)}>5</div>
         </div>
-        <div className={cls(styles.headerRightIcon)}>
-          <div onClick={() => setShowUserMenu((prev) => !prev)}>
+        <div className={cls(styles.headerRightIcon)} ref={userMenuRef}>
+          <div
+            className={cls(
+              styles.menuWrap,
+              showUserMenu ? styles.activeMenu : '',
+            )}
+            onClick={() => setShowUserMenu((prev) => !prev)}
+          >
             <ArrowDown color={color} />
           </div>
-          {showUserMenu && <UserMenu setShowUserMenu={setShowUserMenu} />}
+          {showUserMenu && <UserMenu />}
         </div>
       </div>
     </header>

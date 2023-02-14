@@ -130,7 +130,12 @@ header {
 .allMenuIcon {
   position: relative;
 }
-
+.menuWrap {
+  display: flex;
+}
+.activeMenu svg {
+  fill: var(--blue-color);
+}
 @media (max-width: 856px) {
   .search input {
     display: none;

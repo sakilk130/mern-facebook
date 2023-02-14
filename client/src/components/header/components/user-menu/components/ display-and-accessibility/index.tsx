@@ -1,19 +1,16 @@
 import cls from 'classnames';
-import { LegacyRef } from 'react';
 import { UserProfile } from '../../../../../../enums/userProfile';
 import styles from './styles/display-and-accessibility.module.css';
 
 interface DisplayAndAccessibilityProps {
   onChangeVisible: (visible: UserProfile) => void;
-  userMenuRef: LegacyRef<HTMLDivElement> | undefined;
 }
 
 const DisplayAndAccessibility = ({
   onChangeVisible,
-  userMenuRef,
 }: DisplayAndAccessibilityProps) => {
   return (
-    <div ref={userMenuRef}>
+    <div>
       <div className={cls(styles.title)}>
         <div
           className={styles.backBtn}
