@@ -1,5 +1,5 @@
 import Header from '../../components/header';
-import { HomeLeft } from '../../components/home';
+import { HomeLeft, HomeRight } from '../../components/home';
 import styles from './styles/home.module.css';
 
 const Home = () => {
@@ -7,6 +7,7 @@ const Home = () => {
     <div className={styles.container}>
       <Header />
       <HomeLeft />
+      <HomeRight />
     </div>
   );
 };

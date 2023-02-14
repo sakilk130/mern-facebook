@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  gap: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.container img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+.container p {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.container:hover {
+  background-color: var(--bg-forth);
+}

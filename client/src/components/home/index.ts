@@ -1,3 +1,4 @@
 import HomeLeft from './components/left';
+import HomeRight from './components/right';
 
-export { HomeLeft };
+export { HomeLeft, HomeRight };
