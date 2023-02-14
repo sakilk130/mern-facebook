@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.linkItemText p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.linkItemText span {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--blue-color);
+}
+.linkItemText span::before {
+  content: '•';
+  margin-right: 5px;
+  font-size: 1.5rem;
+}
+.container:hover {
+  background-color: var(--bg-forth);
+}
