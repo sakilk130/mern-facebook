@@ -7,6 +7,8 @@
   overflow-y: auto;
   color: var(--color-primary);
   padding: 15px 0px;
+  padding-bottom: 5rem;
+  user-select: none;
 }
 .profile {
   display: flex;
@@ -14,6 +16,7 @@
   padding: 5px;
   gap: 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .profile img {
   width: 36px;
@@ -26,4 +29,14 @@
 }
 .profile:hover {
   background-color: var(--bg-forth);
+}
+.arrow {
+  padding: 5px;
+  background-color: var(--bg-forth);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+.rotate180 {
+  transform: rotate(180deg);
 }
