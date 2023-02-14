@@ -1,0 +1,13 @@
+.shortcutItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+.shortcutItem img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}

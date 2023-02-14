@@ -7,6 +7,7 @@ import { IUser } from '../../../../interfaces/user';
 import { AppState } from '../../../../redux/store';
 import { ArrowDown1 } from '../../../../svg';
 import LinkItem from './components/link-item';
+import Shortcut from './components/shortcut';
 import styles from './styles/home-left.module.css';
 
 const HomeLeft = () => {
@@ -58,6 +59,41 @@ const HomeLeft = () => {
           </div>
         </>
       )}
+      <hr />
+
+      <div className={cls(styles.shortcutHeader)}>
+        <p>Your Shortcuts</p>
+        <div className={cls(styles.editBtn)}>Edit</div>
+      </div>
+      <div className={cls(styles.shortcutList)}>
+        <Shortcut
+          link="https://www.youtube.com/c/MohamedHaJJi1/featured"
+          img="../../images/ytb.png"
+          name="My Youtube channel"
+        />
+
+        <Shortcut
+          link="https://www.instagram.com/med_hajji7/"
+          img="../../images/insta.png"
+          name="My Instagram "
+        />
+      </div>
+      <footer className={cls(styles.footer)}>
+        <Link to="/">Privacy </Link>
+        <span>. </span>
+        <Link to="/">Terms </Link>
+        <span>. </span>
+        <Link to="/">Advertising </Link>
+        <span>. </span>
+        <Link to="/">
+          Ad Choices <i className="ad_choices_icon"></i>
+        </Link>
+        <span>. </span>
+        <Link to="/"></Link>Cookies <span>. </span>
+        <Link to="/">More </Link>
+        <span>. </span> <br />
+        Meta © 2022
+      </footer>
     </div>
   );
 };

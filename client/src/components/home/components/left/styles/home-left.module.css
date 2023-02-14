@@ -40,3 +40,38 @@
 .rotate180 {
   transform: rotate(180deg);
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(233, 232, 232);
+  border-radius: 10px;
+}
+.shortcutHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+.shortcutHeader p {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  padding: 13px 10px 11px 10px;
+  cursor: pointer;
+}
+.shortcutHeader:hover .editBtn {
+  display: block;
+}
+.shortcutHeader .editBtn {
+  font-size: 14px;
+  color: var(--blue-color);
+  display: none;
+  cursor: pointer;
+}
+.footer {
+  font-size: 14px;
+  color: var(--color-secondary);
+  cursor: pointer;
+  padding: 10px;
+}
