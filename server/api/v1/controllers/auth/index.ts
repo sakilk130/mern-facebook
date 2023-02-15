@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import * as Yup from 'yup';
 import { sendValidationEmail } from '../../../../helpers/mailer';
 import { generateToken, verifyToken } from '../../../../helpers/token';
 import { validateUserName } from '../../../../helpers/validation';
@@ -12,51 +11,6 @@ export const register = async (
   res: Response
 ): Promise<Response<any, Record<string, any>> | undefined> => {
   const { firstName, lastName, email, password, gender, dob } = req.body;
-  const schema = Yup.object().shape({
-    firstName: Yup.string()
-      .required('First name is required')
-      .min(2, 'First name must be at least 2 characters')
-      .max(50, 'First name must be at most 50 characters'),
-    lastName: Yup.string()
-      .required('Last name is required')
-      .min(2, 'Last name must be at least 2 characters')
-      .max(50, 'Last name must be at most 50 characters'),
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(50, 'Password must be at most 50 characters'),
-    gender: Yup.string().required('Gender is required'),
-    dob: Yup.object().shape({
-      bDate: Yup.number().required('Birth date is required'),
-      bMonth: Yup.number().required('Birth month is required'),
-      bYear: Yup.number().required('Birth year is required'),
-    }),
-  });
-
-  try {
-    await schema.validate(req.body, { abortEarly: false });
-  } catch (error) {
-    if (error instanceof Yup.ValidationError) {
-      let errors: Record<string, string[]> = {};
-      //FIXME: type check
-      error.inner.forEach((err: any) => {
-        if (err?.path) {
-          errors[err?.path] = err.errors;
-        }
-      });
-      return res.status(400).json({
-        success: false,
-        error: errors,
-      });
-    } else {
-      return res.status(500).json({
-        success: false,
-        error: error.message,
-      });
-    }
-  }
-
   try {
     const exitingUser = await User.findOne({ email });
     if (exitingUser) {
@@ -148,30 +102,6 @@ export const login = async (
   res: Response
 ): Promise<Response<any, Record<string, any>> | undefined> => {
   const { email, password } = req.body;
-  const schema = Yup.object().shape({
-    email: Yup.string().email('Email is invalid').required('Email is required'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(50, 'Password must be at most 50 characters'),
-  });
-
-  try {
-    await schema.validate(req.body, { abortEarly: false });
-  } catch (error) {
-    let errors: Record<string, string[]> = {};
-    // FIXME: any type
-    error.inner.forEach((err: any) => {
-      if (err?.path) {
-        errors[err?.path] = err.errors;
-      }
-    });
-    return res.status(400).json({
-      success: false,
-      error: errors,
-    });
-  }
-
   try {
     const findEmail = await User.findOne({ email });
     if (!findEmail) {
