@@ -1,0 +1,61 @@
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 120px);
+  gap: 10px;
+  padding: 6px 0;
+}
+.story {
+  border-radius: 15px;
+  background-color: var(--bg-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.story:hover {
+  opacity: 0.8;
+  scale: 1.1;
+}
+.story img {
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.plusIcon {
+  padding: 5px;
+  background-color: var(--blue-color);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 100px;
+  left: 42px;
+  border: 5px solid var(--bg-primary);
+}
+.createStory {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  padding: 10px;
+}
+.arrowRight {
+  position: absolute;
+  top: 50%;
+  right: 35%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px;
+  height: 40px;
+  width: 40px;
+  background-color: var(--bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

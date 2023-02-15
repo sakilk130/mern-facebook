@@ -1,3 +1,9 @@
 .container {
   position: relative;
+  min-height: 100vh;
+  background: var(--bg-secondary);
+}
+.middle {
+  margin-top: 75px;
+  margin-left: 25.8vw;
 }
