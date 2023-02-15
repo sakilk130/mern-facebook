@@ -8,7 +8,6 @@ export const RequestValidator =
       await schema.validate(req.body, { abortEarly: false });
       return next();
     } catch (error) {
-      console.log('🚀 ~ file: RequestValidator.ts:11 ~ error', { error });
       if (error instanceof Yup.ValidationError) {
         let errors: Record<string, string[]> = {};
         //FIXME: type check
