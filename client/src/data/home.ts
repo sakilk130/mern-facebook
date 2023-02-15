@@ -109,68 +109,32 @@ export const homeLeft = [
     text: 'Weather',
     img: 'weather',
   },
+];
+
+export const stories = [
   {
-    text: '',
-    img: '',
+    profile_picture: '../../stories/profile1.jpg',
+    profile_name: 'Elon Musk',
+    image: '../../stories/1.jpg',
   },
   {
-    text: '',
-    img: '',
+    profile_picture: '../../stories/profile2.jpg',
+    profile_name: 'South park',
+    image: '../../stories/2.png',
   },
   {
-    text: '',
-    img: '',
+    profile_picture: '../../stories/profile3.png',
+    profile_name: 'The Sopranos',
+    image: '../../stories/3.jpg',
   },
   {
-    text: '',
-    img: '',
+    profile_picture: '../../stories/profile4.jfif',
+    profile_name: 'Football World',
+    image: '../../stories/4.jpg',
   },
   {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
-  },
-  {
-    text: '',
-    img: '',
+    profile_picture: '../../stories/profile5.png',
+    profile_name: 'The Witcher Wild Hunt',
+    image: '../../stories/5.jfif',
   },
 ];

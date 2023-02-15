@@ -3,11 +3,12 @@ header {
   top: 0;
   background-color: var(--bg-primary);
   width: 100%;
-  box-shadow: 1px 8px 15px -7px var(--shadow-2);
+  box-shadow: 1px 1px 0px px var(--shadow-2);
   display: grid;
   grid-template-columns: 1fr 1.3fr 1fr;
   color: var(--color-primary);
   padding: 0.5rem 0;
+  z-index: 1;
 }
 .headerLeft {
   display: flex;
@@ -141,25 +142,21 @@ header {
     display: none;
   }
 }
-
 @media (max-width: 856px) {
   .gamingIcon {
     display: none;
   }
 }
-
 @media (max-width: 694px) {
   .marketIcon {
     display: none;
   }
 }
-
 @media (max-width: 598px) {
   .videoIcon {
     display: none;
   }
 }
-
 @media (max-width: 550px) {
   .profile {
     display: none;

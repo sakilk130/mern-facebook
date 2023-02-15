@@ -1,0 +1,36 @@
+.container {
+  position: absolute;
+  width: 300px;
+  top: 7px;
+  right: 0;
+  padding: 15px 0;
+  padding-bottom: 5rem;
+}
+.sponsored {
+  color: var(--color-secondary);
+}
+.contactHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contactHeader h4 {
+  color: var(--color-secondary);
+}
+.contactHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.headerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.headerIcon:hover {
+  background-color: var(--bg-forth);
+}
