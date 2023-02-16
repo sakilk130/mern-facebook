@@ -4,6 +4,8 @@
   background: var(--bg-secondary);
 }
 .middle {
+  background: unset;
   margin-top: 75px;
   margin-left: 25.8vw;
+  margin-right: 25.3vw;
 }

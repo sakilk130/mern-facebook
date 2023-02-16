@@ -1,0 +1,51 @@
+.container {
+  padding: 10px;
+  background-color: var(--bg-primary);
+  border-radius: 10px;
+}
+.inputField {
+  display: flex;
+  align-items: center;
+}
+.inputField img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px;
+}
+.inputField div {
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+.inputField div:hover {
+  background-color: var(--bg-primary);
+}
+hr {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  color: var(--divider);
+}
+.postIcons {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
+}
+.postIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.postIcon:hover {
+  background-color: var(--bg-secondary);
+  border-radius: 15px;
+}
