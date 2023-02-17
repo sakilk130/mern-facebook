@@ -6,6 +6,20 @@
 .middle {
   background: unset;
   margin-top: 75px;
-  margin-left: 25.8vw;
-  margin-right: 25.3vw;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 1175px) {
+  .middle {
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 1050px) {
+  .middle {
+    position: relative;
+    margin-left: 55px;
+  }
 }

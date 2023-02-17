@@ -11,3 +11,9 @@
   margin-bottom: 5px;
   margin-right: 10px;
 }
+
+@media (max-width: 1050px) {
+  .shortcutItem p {
+    display: none;
+  }
+}

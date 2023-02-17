@@ -1,7 +1,7 @@
 .container {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(6, 120px);
+  grid-template-columns: repeat(6, 105px);
   gap: 10px;
   padding: 6px 0;
 }
@@ -58,4 +58,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 1175px) {
+  .container {
+    width: 84%;
+  }
+}
+
+@media (max-width: 1050px) {
+  .container {
+    width: 61%;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 98%;
+  }
 }

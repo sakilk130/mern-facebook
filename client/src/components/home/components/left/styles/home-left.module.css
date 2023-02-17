@@ -2,7 +2,7 @@
   position: fixed;
   top: 70px;
   left: 6px;
-  width: 300px;
+  width: 15vw;
   max-height: 100vh;
   overflow-y: auto;
   color: var(--color-primary);
@@ -74,4 +74,30 @@
   color: var(--color-secondary);
   cursor: pointer;
   padding: 10px;
+}
+
+@media (max-width: 1050px) {
+  .profile p {
+    display: none;
+  }
+  hr {
+    display: none;
+  }
+  .shortcutHeader {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+  .profile {
+    background: var(--bg-third);
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }

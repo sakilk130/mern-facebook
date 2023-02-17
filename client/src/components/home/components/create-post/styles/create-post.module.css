@@ -49,3 +49,19 @@ hr {
   background-color: var(--bg-secondary);
   border-radius: 15px;
 }
+
+@media (max-width: 1175px) {
+  .container {
+    width: 84%;
+  }
+}
+@media (max-width: 1050px) {
+  .container {
+    width: 65%;
+  }
+}
+@media (max-width: 900px) {
+  .container {
+    width: 98%;
+  }
+}

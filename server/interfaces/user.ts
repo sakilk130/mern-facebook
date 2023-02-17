@@ -1,5 +1,10 @@
 import { AnyArray, SchemaTypeOptions, StringSchemaDefinition } from 'mongoose';
 
+export interface AuthUser {
+  id: string;
+  iat: number;
+  exp: number;
+}
 export interface DOB {
   bDate: number;
   bMonth: number;
