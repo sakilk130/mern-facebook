@@ -25,3 +25,20 @@
 .container:hover {
   background-color: var(--bg-forth);
 }
+
+@media (max-width: 1050px) {
+  .linkItemText p {
+    display: none;
+  }
+  .linkItemText span {
+    display: none;
+  }
+  .container {
+    background: var(--bg-third);
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+}

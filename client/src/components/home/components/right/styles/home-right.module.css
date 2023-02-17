@@ -1,7 +1,7 @@
 .container {
   position: absolute;
-  width: 300px;
-  top: 7px;
+  width: 20vw;
+  top: 75px;
   right: 0;
   padding: 15px 0;
   padding-bottom: 5rem;
@@ -33,4 +33,16 @@
 }
 .headerIcon:hover {
   background-color: var(--bg-forth);
+}
+
+@media (max-width: 1050px) {
+  .container {
+    top: 7px;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    display: none;
+  }
 }
