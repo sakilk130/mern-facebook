@@ -28,16 +28,12 @@ const Login = () => {
       const { data } = await axiosInstance.post('/auth/login', values);
       setLoading(false);
       if (data?.success) {
-        if (data?.data?.user?.verified) {
-          dispatch({
-            type: UserActionEnum.LOGIN,
-            payload: data?.data,
-          });
-          Cookie.set('user', JSON.stringify(data?.data));
-          navigate('/');
-        } else {
-          setError('Please verify your email');
-        }
+        dispatch({
+          type: UserActionEnum.LOGIN,
+          payload: data?.data,
+        });
+        Cookie.set('user', JSON.stringify(data?.data));
+        navigate('/');
       } else {
         setError(data?.error ?? 'Something went wrong');
       }

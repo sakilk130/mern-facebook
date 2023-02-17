@@ -47,7 +47,7 @@ const Header = () => {
   });
 
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles.headerLeft}>
         <Link to="/">
           <Logo />
