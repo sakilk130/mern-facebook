@@ -32,8 +32,8 @@ export const register = async (
       dob,
     });
     await user.save();
-    const token = generateToken({ id: user._id }, '1d');
-    const url = `${process.env.BASE_URL}/auth/verify-email?token=${token}`;
+    const token = generateToken({ id: user._id }, '30m');
+    const url = `${process.env.BASE_URL}?token=${token}`;
     sendValidationEmail(email, firstName + ' ' + lastName, url);
     return res.status(201).json({
       success: true,
