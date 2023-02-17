@@ -1,9 +1,13 @@
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
+import Cookie from 'js-cookie';
 import { memo, useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
 import axiosInstance from '../../../../config/axios';
-import { initialValues, validationSchema, IFormValues } from './formik/formik';
+import { UserActionEnum } from '../../../../redux/user/types';
+import { IFormValues, initialValues, validationSchema } from './formik/formik';
 import styles from './styles/RegisterCardModal.module.css';
 import { months } from './utils';
 
@@ -12,7 +16,10 @@ interface RegisterCardModalProps {
 }
 
 const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -24,6 +31,15 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
       setLoading(false);
       if (data?.success) {
         setSuccessMessage(data?.message);
+        setTimeout(() => {
+          onClose();
+          dispatch({
+            type: UserActionEnum.LOGIN,
+            payload: data?.data,
+          });
+          Cookie.set('user', JSON.stringify(data?.data));
+          navigate('/');
+        }, 2000);
       } else {
         setError(data?.error ?? 'Something went wrong');
       }
