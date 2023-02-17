@@ -1,5 +1,3 @@
-.container {
-}
 .modalHeader {
   display: flex;
   justify-content: space-between;
@@ -35,8 +33,7 @@
   transition: all 0.3s ease;
 }
 .modalBody .active:hover {
-  background: var(--blue-color);
-  color: #fff;
+  opacity: 0.9;
 }
 .modalBody .resend {
   font-weight: 600;
@@ -52,6 +49,13 @@
   transition: all 0.3s ease;
 }
 .resend:hover {
-  background: #fff;
-  color: var(--blue-color);
+  opacity: 0.9;
+}
+.active:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.resend:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

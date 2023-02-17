@@ -10,7 +10,14 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
   switch (action.type) {
     case UserActionEnum.LOGIN:
       return action.payload;
-
+    case UserActionEnum.VERIFY:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          verified: action.payload,
+        },
+      };
     default:
       return state;
   }

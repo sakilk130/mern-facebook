@@ -36,7 +36,7 @@ const Home = () => {
     },
     content: {
       borderRadius: '10px',
-      maxHeight: activeToken === token ? '201px' : '115px',
+      maxHeight: activeToken === token ? '215px' : '115px',
       maxWidth: '350px',
       border: 'none',
       boxShadow: '0 0 5px var(--shadow-1)',
