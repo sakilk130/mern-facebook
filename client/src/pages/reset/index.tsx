@@ -51,11 +51,41 @@ const Reset = () => {
           />
         );
       case ResetForm.SEND_CODE_BY_EMAIL:
-        return <SendCodeByEmail setStep={setStep} findUser={findUser} />;
+        return (
+          <SendCodeByEmail
+            setStep={setStep}
+            findUser={findUser}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        );
       case ResetForm.VERIFY_CODE:
-        return <VerifyCode setStep={setStep} code={code} setCode={setCode} />;
+        return (
+          <VerifyCode
+            setStep={setStep}
+            code={code}
+            setCode={setCode}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            email={email}
+          />
+        );
       case ResetForm.RESET_PASSWORD:
-        return <ResetPassword password={password} setPassword={setPassword} />;
+        return (
+          <ResetPassword
+            password={password}
+            setPassword={setPassword}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            email={email}
+          />
+        );
       default:
         return (
           <SearchByEmail

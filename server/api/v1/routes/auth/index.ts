@@ -9,6 +9,9 @@ import {
   register,
   sendVerification,
   findUser,
+  sendVerificationCode,
+  validateResetCode,
+  changePassword,
 } from '../../controllers/auth';
 
 const router = express.Router();
@@ -18,5 +21,8 @@ router.post('/activate', activate);
 router.post('/login', RequestValidator(LoginRequest), login);
 router.post('/send-verification', auth, sendVerification);
 router.post('/find-user', findUser);
+router.post('/send-verification-code', sendVerificationCode);
+router.post('/validate-reset-code', validateResetCode);
+router.post('/change-password', changePassword);
 
 export default router;

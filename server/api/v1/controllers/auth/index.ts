@@ -1,11 +1,13 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import { sendValidationEmail } from '../../../../helpers/mailer';
+import { generateCode } from '../../../../helpers/generateCode';
+import { sendResetCode, sendValidationEmail } from '../../../../helpers/mailer';
 import { generateToken, verifyToken } from '../../../../helpers/token';
 import { validateUserName } from '../../../../helpers/validation';
-import User from '../../../../models/User';
 import { AuthUser } from '../../../../interfaces/user';
+import Code from '../../../../models/Code';
+import User from '../../../../models/User';
 
 interface RequestWithUser extends Request {
   user?: AuthUser;
@@ -197,6 +199,95 @@ export const findUser = async (req: Request, res: Response) => {
         email: user.email,
         picture: user.picture,
       },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const sendVerificationCode = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    await Code.findOneAndRemove({ email });
+    const code = new Code({
+      code: generateCode(),
+      user: user._id,
+    });
+    await code.save();
+    sendResetCode(email, user.firstName, code.code);
+    return res.status(200).json({
+      success: true,
+      message: 'Verification code has been sent to your email',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const validateResetCode = async (req: Request, res: Response) => {
+  try {
+    const { email, code } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    const findCode = await Code.findOne({ user: user._id });
+    if (!findCode) {
+      return res.status(404).json({
+        success: false,
+        error: 'Wrong verification code',
+      });
+    }
+    if (findCode.code !== code) {
+      return res.status(404).json({
+        success: false,
+        error: 'Wrong verification code',
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: 'Verification code is valid',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const changePassword = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const findUser = await User.findOne({ email });
+    if (!findUser) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    const hashedPassword = await bcrypt.hash(password, 12);
+    findUser.password = hashedPassword;
+    await findUser.save();
+    return res.status(200).json({
+      success: true,
+      message: 'Password changed successfully',
     });
   } catch (error) {
     return res.status(500).json({
