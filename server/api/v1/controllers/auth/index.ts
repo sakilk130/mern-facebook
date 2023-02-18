@@ -1,11 +1,13 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-import { sendValidationEmail } from '../../../../helpers/mailer';
+import { generateCode } from '../../../../helpers/generateCode';
+import { sendResetCode, sendValidationEmail } from '../../../../helpers/mailer';
 import { generateToken, verifyToken } from '../../../../helpers/token';
 import { validateUserName } from '../../../../helpers/validation';
-import User from '../../../../models/User';
 import { AuthUser } from '../../../../interfaces/user';
+import Code from '../../../../models/Code';
+import User from '../../../../models/User';
 
 interface RequestWithUser extends Request {
   user?: AuthUser;
@@ -197,6 +199,36 @@ export const findUser = async (req: Request, res: Response) => {
         email: user.email,
         picture: user.picture,
       },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const sendVerificationCode = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    console.log('🚀 ~ file: index.ts:219 ~ sendVerificationCode ~ user', user);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    await Code.findOneAndRemove({ email });
+    const code = new Code({
+      code: generateCode(),
+      user: user._id,
+    });
+    await code.save();
+    sendResetCode(email, user.firstName, code.code);
+    return res.status(200).json({
+      success: true,
+      message: 'Verification code has been sent to your email',
     });
   } catch (error) {
     return res.status(500).json({
