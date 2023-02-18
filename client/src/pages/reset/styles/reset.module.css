@@ -1,0 +1,34 @@
+.container {
+  height: 100vh;
+  background-color: var(--bg-secondary);
+}
+.headerImage {
+  height: 50px;
+  object-fit: cover;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-primary);
+  padding: 5px 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.profileDiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profileImage {
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 80%;
+}
