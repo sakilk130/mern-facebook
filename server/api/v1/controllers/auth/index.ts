@@ -180,3 +180,28 @@ export const sendVerification = async (req: RequestWithUser, res: Response) => {
     });
   }
 };
+
+export const findUser = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select('email picture');
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: {
+        email: user.email,
+        picture: user.picture,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};

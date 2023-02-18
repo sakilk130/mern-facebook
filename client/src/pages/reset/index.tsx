@@ -9,6 +9,7 @@ import {
   SendCodeByEmail,
   VerifyCode,
 } from '../../components/reset-form';
+import ResetPassword from '../../components/reset-form/components/reset-password';
 import { ResetForm } from '../../enums/resetForm';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
@@ -18,10 +19,13 @@ import styles from './styles/reset.module.css';
 const Reset = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [password, setPassword] = useState('');
   const [code, setCode] = useState('');
   const [email, setEmail] = useState('');
   const [step, setStep] = useState(ResetForm.SEARCH_BY_EMAIL);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [findUser, setFindUser] = useState(null);
 
   const user = useSelector((state: AppState) => state.user as IUser);
 
@@ -35,15 +39,35 @@ const Reset = () => {
     switch (step) {
       case ResetForm.SEARCH_BY_EMAIL:
         return (
-          <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />
+          <SearchByEmail
+            email={email}
+            setEmail={setEmail}
+            setStep={setStep}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setFindUser={setFindUser}
+          />
         );
       case ResetForm.SEND_CODE_BY_EMAIL:
-        return <SendCodeByEmail setStep={setStep} />;
+        return <SendCodeByEmail setStep={setStep} findUser={findUser} />;
       case ResetForm.VERIFY_CODE:
         return <VerifyCode setStep={setStep} code={code} setCode={setCode} />;
+      case ResetForm.RESET_PASSWORD:
+        return <ResetPassword password={password} setPassword={setPassword} />;
       default:
         return (
-          <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />
+          <SearchByEmail
+            email={email}
+            setEmail={setEmail}
+            setStep={setStep}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setFindUser={setFindUser}
+          />
         );
     }
   };

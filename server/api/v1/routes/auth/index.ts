@@ -8,6 +8,7 @@ import {
   login,
   register,
   sendVerification,
+  findUser,
 } from '../../controllers/auth';
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.post('/register', RequestValidator(RegisterRequest), register);
 router.post('/activate', activate);
 router.post('/login', RequestValidator(LoginRequest), login);
 router.post('/send-verification', auth, sendVerification);
+router.post('/find-user', findUser);
 
 export default router;

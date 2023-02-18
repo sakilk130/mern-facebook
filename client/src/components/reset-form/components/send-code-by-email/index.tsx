@@ -4,11 +4,14 @@ import { ResetForm } from '../../../../enums/resetForm';
 import styles from './styles/send-code-by-email.module.css';
 
 interface ISendCodeByEmailProps {
-  //   user: IUser;
+  findUser: {
+    email: string;
+    picture: string;
+  } | null;
   setStep?: (step: number) => void;
 }
 
-const SendCodeByEmail = ({ setStep }: ISendCodeByEmailProps) => {
+const SendCodeByEmail = ({ setStep, findUser }: ISendCodeByEmailProps) => {
   const handleSendCodeByEmail = () => {
     setStep && setStep(ResetForm.VERIFY_CODE);
   };
@@ -21,12 +24,12 @@ const SendCodeByEmail = ({ setStep }: ISendCodeByEmailProps) => {
           <div className={cls(styles.checkWithEmail)}>
             <input type="radio" name="code" id="email" checked />
             <label htmlFor="email">
-              <span>Send code via email</span> <span>email@email.email</span>
+              <span>Send code via email</span> <span>{findUser?.email}</span>
             </label>
           </div>
         </div>
         <div className={cls(styles.searchRight)}>
-          <img src="../../../icons/facebook.svg" alt="" />
+          <img src={findUser?.picture} alt="" />
           <span>email@email.email</span>
           <span>Facebook user</span>
         </div>
