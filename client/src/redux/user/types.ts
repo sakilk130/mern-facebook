@@ -1,6 +1,7 @@
 export enum UserActionEnum {
   LOGIN = 'LOGIN',
   VERIFY = 'VERIFY',
+  LOGOUT = 'LOGOUT',
 }
 
 export type UserActionTypes =
@@ -11,4 +12,7 @@ export type UserActionTypes =
   | {
       type: UserActionEnum.VERIFY;
       payload: boolean;
+    }
+  | {
+      type: UserActionEnum.LOGOUT;
     };

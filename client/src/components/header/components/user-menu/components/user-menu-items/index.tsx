@@ -1,9 +1,11 @@
 import cls from 'classnames';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserProfile } from '../../../../../../enums/userProfile';
 import { IUser } from '../../../../../../interfaces/user';
 import { AppState } from '../../../../../../redux/store';
+import { UserActionEnum } from '../../../../../../redux/user/types';
 import styles from './styles/user-menu-items.module.css';
 
 interface UserMenuItemsProps {
@@ -11,8 +13,14 @@ interface UserMenuItemsProps {
 }
 
 const UserMenuItems = ({ onChangeVisible }: UserMenuItemsProps) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { user } = useSelector((state: AppState) => state.user as IUser);
-
+  const handleLogout = () => {
+    Cookies.set('user', '');
+    dispatch({ type: UserActionEnum.LOGOUT });
+    navigate('/');
+  };
   return (
     <div>
       <Link to="/profile" className={cls(styles.profileLink, styles.hover)}>
@@ -77,7 +85,10 @@ const UserMenuItems = ({ onChangeVisible }: UserMenuItemsProps) => {
           </div>
         </div>
       </div>
-      <div className={cls(styles.userMenuItem, styles.hover)}>
+      <div
+        className={cls(styles.userMenuItem, styles.hover)}
+        onClick={handleLogout}
+      >
         <div className={cls(styles.circle)}>
           <i className="logout_filled_icon"></i>
         </div>

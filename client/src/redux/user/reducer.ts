@@ -18,6 +18,8 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
           verified: action.payload,
         },
       };
+    case UserActionEnum.LOGOUT:
+      return null;
     default:
       return state;
   }
