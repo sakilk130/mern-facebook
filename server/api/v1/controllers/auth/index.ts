@@ -212,7 +212,6 @@ export const sendVerificationCode = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
-    console.log('🚀 ~ file: index.ts:219 ~ sendVerificationCode ~ user', user);
     if (!user) {
       return res.status(404).json({
         success: false,
