@@ -16,9 +16,10 @@ interface IActivationModal {
 const ActivationModal = ({ onClose, token }: IActivationModal) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [resend, setResend] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleActivate = async () => {
     setLoading(true);
@@ -57,6 +58,23 @@ const ActivationModal = ({ onClose, token }: IActivationModal) => {
     }
   };
 
+  const handleResend = async () => {
+    setResend(true);
+    try {
+      const { data } = await axiosInstance.post('/auth/send-verification');
+      setResend(false);
+      if (data?.success) {
+        setSuccess(data?.message ?? 'Email sent');
+      } else {
+        setError(data?.error ?? 'Failed to send email');
+      }
+    } catch (error: any) {
+      // FIXME: fix any
+      setError(error.response?.data?.error ?? 'Failed to activate');
+      setResend(false);
+    }
+  };
+
   return (
     <>
       <header className={styles.modalHeader}>
@@ -74,10 +92,11 @@ const ActivationModal = ({ onClose, token }: IActivationModal) => {
       </header>
       {token && (
         <div className={styles.modalBody}>
-          {error && <p>{error}</p>}
+          {success && <p className={cls(styles.successMessage)}>{success}</p>}
+          {error && <p className={cls(styles.errorMessage)}>{error}</p>}
           <button
             className={cls(styles.active)}
-            disabled={loading}
+            disabled={loading || resend}
             type="button"
             onClick={handleActivate}
           >
@@ -87,8 +106,16 @@ const ActivationModal = ({ onClose, token }: IActivationModal) => {
               <span>Activate</span>
             )}
           </button>
-          <button className={cls(styles.resend)} disabled={loading}>
-            <span>Resend</span>
+          <button
+            className={cls(styles.resend)}
+            disabled={loading || resend}
+            onClick={handleResend}
+          >
+            {resend ? (
+              <PulseLoader color="blue" size={10} />
+            ) : (
+              <span>Resend</span>
+            )}
           </button>
         </div>
       )}
