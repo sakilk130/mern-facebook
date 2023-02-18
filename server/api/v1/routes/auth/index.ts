@@ -10,6 +10,7 @@ import {
   sendVerification,
   findUser,
   sendVerificationCode,
+  validateResetCode,
 } from '../../controllers/auth';
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.post('/login', RequestValidator(LoginRequest), login);
 router.post('/send-verification', auth, sendVerification);
 router.post('/find-user', findUser);
 router.post('/send-verification-code', sendVerificationCode);
+router.post('/validate-reset-code', validateResetCode);
 
 export default router;

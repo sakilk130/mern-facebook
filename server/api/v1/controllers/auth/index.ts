@@ -237,3 +237,38 @@ export const sendVerificationCode = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const validateResetCode = async (req: Request, res: Response) => {
+  try {
+    const { email, code } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    const findCode = await Code.findOne({ user: user._id });
+    if (!findCode) {
+      return res.status(404).json({
+        success: false,
+        error: 'Wrong verification code',
+      });
+    }
+    if (findCode.code !== code) {
+      return res.status(404).json({
+        success: false,
+        error: 'Wrong verification code',
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: 'Verification code is valid',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
