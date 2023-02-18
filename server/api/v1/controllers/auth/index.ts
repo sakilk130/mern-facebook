@@ -271,3 +271,28 @@ export const validateResetCode = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const changePassword = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const findUser = await User.findOne({ email });
+    if (!findUser) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    const hashedPassword = await bcrypt.hash(password, 12);
+    findUser.password = hashedPassword;
+    await findUser.save();
+    return res.status(200).json({
+      success: true,
+      message: 'Password changed successfully',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
