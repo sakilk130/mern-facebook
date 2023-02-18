@@ -5,6 +5,11 @@ import { sendValidationEmail } from '../../../../helpers/mailer';
 import { generateToken, verifyToken } from '../../../../helpers/token';
 import { validateUserName } from '../../../../helpers/validation';
 import User from '../../../../models/User';
+import { AuthUser } from '../../../../interfaces/user';
+
+interface RequestWithUser extends Request {
+  user?: AuthUser;
+}
 
 export const register = async (
   req: Request,
@@ -133,6 +138,40 @@ export const login = async (
         token,
       },
       message: 'Login successful',
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const sendVerification = async (req: RequestWithUser, res: Response) => {
+  try {
+    const { id } = req.user as AuthUser;
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found',
+      });
+    }
+    if (user.verified === true) {
+      return res.status(400).json({
+        success: false,
+        message: 'This account is already activated.',
+      });
+    }
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      '30m'
+    );
+    const url = `${process.env.BASE_URL}?token=${emailVerificationToken}`;
+    sendValidationEmail(user.email, user.firstName, url);
+    return res.status(200).json({
+      success: true,
+      message: 'Email verification link has been sent to your email.',
     });
   } catch (error) {
     return res.status(500).json({
