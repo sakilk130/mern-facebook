@@ -23,8 +23,10 @@ const Reset = () => {
   const [code, setCode] = useState('');
   const [email, setEmail] = useState('');
   const [step, setStep] = useState(ResetForm.SEARCH_BY_EMAIL);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [findUser, setFindUser] = useState(null);
 
-  console.log(password, code, email, step);
   const user = useSelector((state: AppState) => state.user as IUser);
 
   const handleLogout = () => {
@@ -37,17 +39,35 @@ const Reset = () => {
     switch (step) {
       case ResetForm.SEARCH_BY_EMAIL:
         return (
-          <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />
+          <SearchByEmail
+            email={email}
+            setEmail={setEmail}
+            setStep={setStep}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setFindUser={setFindUser}
+          />
         );
       case ResetForm.SEND_CODE_BY_EMAIL:
-        return <SendCodeByEmail setStep={setStep} />;
+        return <SendCodeByEmail setStep={setStep} findUser={findUser} />;
       case ResetForm.VERIFY_CODE:
         return <VerifyCode setStep={setStep} code={code} setCode={setCode} />;
       case ResetForm.RESET_PASSWORD:
         return <ResetPassword password={password} setPassword={setPassword} />;
       default:
         return (
-          <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />
+          <SearchByEmail
+            email={email}
+            setEmail={setEmail}
+            setStep={setStep}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            setFindUser={setFindUser}
+          />
         );
     }
   };
