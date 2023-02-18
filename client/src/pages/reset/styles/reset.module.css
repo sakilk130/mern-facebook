@@ -1,0 +1,78 @@
+.container {
+  height: 100vh;
+  background-color: var(--bg-secondary);
+}
+.headerImage {
+  height: 50px;
+  object-fit: cover;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-primary);
+  padding: 5px 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.profileDiv {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profileImage {
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+}
+.resetWrap {
+  background-color: var(--bg-primary);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+.inputField {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputField input {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+}
+.redBorder {
+  border: 1px solid red !important;
+}
+.errorMessage {
+  color: red !important;
+  font-size: 0.8rem;
+}
+.formBtn {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.grayBtn {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 8.5px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+}

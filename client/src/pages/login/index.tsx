@@ -135,7 +135,7 @@ const Login = () => {
                   {loading ? <PulseLoader color="#fff" size={10} /> : 'Log In'}
                 </button>
                 <div className={styles.forgotBtn}>
-                  <Link to="/forgotten-password">Forgotten password?</Link>
+                  <Link to="/reset">Forgotten password?</Link>
                 </div>
                 <button
                   className={styles.newAccountBtn}
