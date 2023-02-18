@@ -7,6 +7,7 @@ import { UserActionEnum } from '../../redux/user/types';
 import styles from './styles/reset.module.css';
 import cls from 'classnames';
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
+import Footer from '../../components/footer';
 
 const Reset = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,6 @@ const Reset = () => {
           )}
         </div>
       </header>
-
       <main className={cls(styles.main)}>
         <div className={cls(styles.resetWrap)}>
           <div className={cls(styles.resetForm)}>
@@ -90,6 +90,7 @@ const Reset = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

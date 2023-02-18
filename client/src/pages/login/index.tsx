@@ -1,18 +1,18 @@
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
+import Cookie from 'js-cookie';
 import { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
 import { Dispatch } from 'redux';
+import Footer from '../../components/footer';
 import PageTitle from '../../components/page-title';
-import axiosInstance from '../../config/axios';
-import { UserActionTypes, UserActionEnum } from '../../redux/user/types';
-import LoginPageFooter from '../../components/footer';
 import RegisterCardModal from '../../components/register';
+import axiosInstance from '../../config/axios';
+import { UserActionEnum, UserActionTypes } from '../../redux/user/types';
 import { IFormValues, initialValues, validationSchema } from './formik/formik';
 import styles from './styles/login.module.css';
-import Cookie from 'js-cookie';
 
 const Login = () => {
   ReactModal.setAppElement('#root');
@@ -152,7 +152,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <LoginPageFooter />
+      <Footer />
     </>
   );
 };
