@@ -75,7 +75,17 @@ const Reset = () => {
           />
         );
       case ResetForm.RESET_PASSWORD:
-        return <ResetPassword password={password} setPassword={setPassword} />;
+        return (
+          <ResetPassword
+            password={password}
+            setPassword={setPassword}
+            error={error}
+            setError={setError}
+            loading={loading}
+            setLoading={setLoading}
+            email={email}
+          />
+        );
       default:
         return (
           <SearchByEmail
