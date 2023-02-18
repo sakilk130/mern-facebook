@@ -20,7 +20,7 @@
   gap: 10px;
 }
 .profileImage {
-  height: 50px;
+  height: 40px;
   object-fit: cover;
   border-radius: 50%;
 }

@@ -9,6 +9,7 @@ import {
   SendCodeByEmail,
   VerifyCode,
 } from '../../components/reset-form';
+import ResetPassword from '../../components/reset-form/components/reset-password';
 import { ResetForm } from '../../enums/resetForm';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
@@ -18,11 +19,12 @@ import styles from './styles/reset.module.css';
 const Reset = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [password, setPassword] = useState('');
   const [code, setCode] = useState('');
   const [email, setEmail] = useState('');
   const [step, setStep] = useState(ResetForm.SEARCH_BY_EMAIL);
 
+  console.log(password, code, email, step);
   const user = useSelector((state: AppState) => state.user as IUser);
 
   const handleLogout = () => {
@@ -41,6 +43,8 @@ const Reset = () => {
         return <SendCodeByEmail setStep={setStep} />;
       case ResetForm.VERIFY_CODE:
         return <VerifyCode setStep={setStep} code={code} setCode={setCode} />;
+      case ResetForm.RESET_PASSWORD:
+        return <ResetPassword password={password} setPassword={setPassword} />;
       default:
         return (
           <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />

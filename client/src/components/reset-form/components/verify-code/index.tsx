@@ -2,6 +2,7 @@ import cls from 'classnames';
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
+import { ResetForm } from '../../../../enums/resetForm';
 import styles from './styles/verify-code.module.css';
 
 interface IVerifyCodeProps {
@@ -17,6 +18,7 @@ const VerifyCode = ({ code, setCode, setStep }: IVerifyCodeProps) => {
     },
     onSubmit: (values) => {
       setCode(values.code);
+      setStep && setStep(ResetForm.RESET_PASSWORD);
     },
     validationSchema: Yup.object({
       code: Yup.string().required('Required'),
@@ -46,7 +48,7 @@ const VerifyCode = ({ code, setCode, setStep }: IVerifyCodeProps) => {
                 Cancel
               </Link>
               <button type="submit" className="blue_btn">
-                Search
+                Continue
               </button>
             </div>
           </Form>
