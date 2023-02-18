@@ -36,6 +36,7 @@ const SearchByEmail = ({
       });
       setLoading(false);
       if (data.success) {
+        setError('');
         setEmail(values.email);
         setFindUser && setFindUser(data.data);
         setStep && setStep(ResetForm.SEND_CODE_BY_EMAIL);
