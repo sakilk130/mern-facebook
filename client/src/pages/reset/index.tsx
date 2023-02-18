@@ -1,17 +1,27 @@
+import cls from 'classnames';
 import Cookies from 'js-cookie';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from '../../components/footer';
+import {
+  SearchByEmail,
+  SendCodeByEmail,
+  VerifyCode,
+} from '../../components/reset-form';
+import { ResetForm } from '../../enums/resetForm';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import { UserActionEnum } from '../../redux/user/types';
 import styles from './styles/reset.module.css';
-import cls from 'classnames';
-import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
-import Footer from '../../components/footer';
 
 const Reset = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [code, setCode] = useState('');
+  const [email, setEmail] = useState('');
+  const [step, setStep] = useState(ResetForm.SEARCH_BY_EMAIL);
 
   const user = useSelector((state: AppState) => state.user as IUser);
 
@@ -20,12 +30,23 @@ const Reset = () => {
     dispatch({ type: UserActionEnum.LOGOUT });
     navigate('/');
   };
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-    },
-    onSubmit: () => {},
-  });
+
+  const renderStep = () => {
+    switch (step) {
+      case ResetForm.SEARCH_BY_EMAIL:
+        return (
+          <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />
+        );
+      case ResetForm.SEND_CODE_BY_EMAIL:
+        return <SendCodeByEmail setStep={setStep} />;
+      case ResetForm.VERIFY_CODE:
+        return <VerifyCode setStep={setStep} code={code} setCode={setCode} />;
+      default:
+        return (
+          <SearchByEmail email={email} setEmail={setEmail} setStep={setStep} />
+        );
+    }
+  };
 
   return (
     <div className={cls(styles.container)}>
@@ -56,40 +77,7 @@ const Reset = () => {
           )}
         </div>
       </header>
-      <main className={cls(styles.main)}>
-        <div className={cls(styles.resetWrap)}>
-          <div className={cls(styles.resetForm)}>
-            <h1>Find Your Account</h1>
-            <p>
-              Please enter your email address or mobile number to search for
-              your account.
-            </p>
-            <FormikProvider value={formik}>
-              <Form>
-                <div className={cls(styles.inputField)}>
-                  <Field
-                    name="email"
-                    type="email"
-                    placeholder="Email address or phone number"
-                    className={formik.errors.email && styles.redBorder}
-                  />
-                  <div className={styles.errorMessage}>
-                    <ErrorMessage name="email" />
-                  </div>
-                </div>
-                <div className={cls(styles.formBtn)}>
-                  <Link to="/login" className={cls(styles.grayBtn)}>
-                    Cancel
-                  </Link>
-                  <button type="submit" className="blue_btn">
-                    Search
-                  </button>
-                </div>
-              </Form>
-            </FormikProvider>
-          </div>
-        </div>
-      </main>
+      <main className={cls(styles.main)}>{renderStep()}</main>
       <Footer />
     </div>
   );
