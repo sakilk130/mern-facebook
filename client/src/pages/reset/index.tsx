@@ -64,7 +64,6 @@ const Reset = () => {
               Please enter your email address or mobile number to search for
               your account.
             </p>
-
             <FormikProvider value={formik}>
               <Form>
                 <div className={cls(styles.inputField)}>
