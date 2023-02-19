@@ -1,0 +1,18 @@
+.emojiPicker {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.colorImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.emojiPickerView {
+  position: fixed;
+  top: 120px;
+  right: 50px;
+}

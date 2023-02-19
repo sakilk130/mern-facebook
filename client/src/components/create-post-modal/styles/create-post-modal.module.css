@@ -60,21 +60,17 @@
   padding: 0.1rem 0.5rem;
   resize: none;
 }
-.emojiPicker {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* position: fixed; */
-}
-.colorImage {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
+.postBtn {
+  margin-top: 10px;
+  background-color: var(--blue-color);
+  border: none;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 5px;
   cursor: pointer;
 }
-.emojiPickerView {
-  position: fixed;
-  top: 140px;
-  right: 50px;
+.postBtn:hover {
+  opacity: 0.9;
 }

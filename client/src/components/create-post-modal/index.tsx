@@ -1,11 +1,12 @@
 import cls from 'classnames';
-import EmojiPicker from 'emoji-picker-react';
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import ReactModal from 'react-modal';
 import { useSelector } from 'react-redux';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
+import AddToYourPost from './components/add-to-your-post';
+import EmojiSection from './components/emoji-section';
 import styles from './styles/create-post-modal.module.css';
 
 const modalStyles = {
@@ -15,7 +16,7 @@ const modalStyles = {
   },
   content: {
     borderRadius: '10px',
-    maxHeight: '400px',
+    maxHeight: '450px',
     maxWidth: '500px',
     border: 'none',
     boxShadow: '0 0 5px var(--shadow-1)',
@@ -25,28 +26,9 @@ const modalStyles = {
 
 const CreatePostModal = () => {
   const textRef = useRef<HTMLTextAreaElement>(null);
-
-  const [cursorPosition, setCursorPosition] = useState<any>();
   const [text, setText] = useState<string>('');
   const [showPreview, setShowPreview] = useState<boolean>(false);
-  const [emojiPicker, setEmojiPicker] = useState<boolean>(false);
-
   const { user } = useSelector((state: AppState) => state.user as IUser);
-
-  const handleEmojiClick = ({ emoji }: any) => {
-    const ref = textRef.current;
-    ref?.focus();
-    const start = text.substring(0, ref?.selectionStart);
-    const end = text.substring(ref?.selectionStart!);
-    const newText = start + emoji + end;
-    setText(newText);
-    setCursorPosition(start.length + emoji.length);
-  };
-  useEffect(() => {
-    if (textRef?.current) {
-      textRef.current.selectionEnd = cursorPosition;
-    }
-  }, [cursorPosition]);
 
   return (
     <ReactModal isOpen={true} style={modalStyles}>
@@ -91,32 +73,9 @@ const CreatePostModal = () => {
               ></textarea>
             </div>
           )}
-          <div className={styles.emojiPicker}>
-            {emojiPicker && (
-              <div className={styles.emojiPickerView}>
-                <EmojiPicker
-                  height={'300px'}
-                  lazyLoadEmojis
-                  searchDisabled
-                  skinTonesDisabled
-                  autoFocusSearch={false}
-                  previewConfig={{
-                    showPreview: false,
-                  }}
-                  onEmojiClick={handleEmojiClick}
-                />
-              </div>
-            )}
-            <img
-              className={styles.colorImage}
-              src="../../../icons/colorful.png"
-              alt="emoji"
-            />
-            <i
-              className="emoji_icon_large"
-              onClick={() => setEmojiPicker((picker) => !picker)}
-            ></i>
-          </div>
+          <EmojiSection setText={setText} text={text} textRef={textRef} />
+          <AddToYourPost />
+          <button className={styles.postBtn}>Post</button>
         </div>
       </div>
     </ReactModal>
