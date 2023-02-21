@@ -1,5 +1,4 @@
-import cls from 'classnames';
-import { memo, useRef, useState } from 'react';
+import { memo, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import ReactModal from 'react-modal';
 import { useSelector } from 'react-redux';
@@ -7,6 +6,7 @@ import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import AddToYourPost from './components/add-to-your-post';
 import EmojiSection from './components/emoji-section';
+import ImagePreview from './components/image-preview';
 import styles from './styles/create-post-modal.module.css';
 
 const modalStyles = {
@@ -25,58 +25,55 @@ const modalStyles = {
 };
 
 const CreatePostModal = () => {
-  const textRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState<string>('');
-  const [showPreview, setShowPreview] = useState<boolean>(false);
+  const [showPreview, setShowPreview] = useState<boolean>(true);
+  const [images, setImages] = useState([]);
   const { user } = useSelector((state: AppState) => state.user as IUser);
 
   return (
     <ReactModal isOpen={true} style={modalStyles}>
-      <div className={cls(styles.container)}>
-        <header className={styles.modalHeader}>
-          <div className={styles.headerText}>
-            <h2>Create Post</h2>
-          </div>
-          <button type="button" className={styles.closeBtn}>
-            <AiOutlineClose />
-          </button>
-        </header>
-        <hr className={styles.hr} />
-        <div className={styles.modalBody}>
-          <div className={styles.profileInfo}>
-            <img
-              className={styles.profileImage}
-              src={user?.picture}
-              alt="profile"
-            />
-            <div>
-              <h3>{user.firstName}</h3>
-              <div className={styles.publicIconWrap}>
-                <img src="../../../icons/public.png" alt="emoji" />
-                Public
-                <i className="arrowDown_icon"></i>
-              </div>
-            </div>
-          </div>
-          {!showPreview && (
-            <div className={styles.postInput}>
-              <textarea
-                ref={textRef}
-                className={styles.textarea}
-                placeholder={`What's on your mind, ${user.firstName}?`}
-                name="post"
-                id="post"
-                cols={30}
-                rows={10}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-              ></textarea>
-            </div>
-          )}
-          <EmojiSection setText={setText} text={text} textRef={textRef} />
-          <AddToYourPost />
-          <button className={styles.postBtn}>Post</button>
+      <header className={styles.modalHeader}>
+        <div className={styles.headerText}>
+          <h2>Create Post</h2>
         </div>
+        <button type="button" className={styles.closeBtn}>
+          <AiOutlineClose />
+        </button>
+      </header>
+      <hr className={styles.hr} />
+      <div className={styles.modalBody}>
+        <div className={styles.profileInfo}>
+          <img
+            className={styles.profileImage}
+            src={user?.picture}
+            alt="profile"
+          />
+          <div>
+            <h3>{user.firstName}</h3>
+            <div className={styles.publicIconWrap}>
+              <img src="../../../icons/public.png" alt="emoji" />
+              Public
+              <i className="arrowDown_icon"></i>
+            </div>
+          </div>
+        </div>
+        {!showPreview ? (
+          <EmojiSection
+            setText={setText}
+            text={text}
+            firstName={user.firstName}
+          />
+        ) : (
+          <ImagePreview
+            setText={setText}
+            text={text}
+            firstName={user.firstName}
+            images={images}
+            setImages={setImages}
+          />
+        )}
+        <AddToYourPost />
+        <button className={styles.postBtn}>Post</button>
       </div>
     </ReactModal>
   );
