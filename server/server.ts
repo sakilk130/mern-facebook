@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import routesV1 from './api/v1/routes';
 import connectDB from './config/db';
 import morgan from 'morgan';
+import fileUpload from 'express-fileupload';
 
 dotenv.config();
 const app = express();
@@ -16,8 +17,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 app.use('/api/v1', routesV1);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is runfileUploadning on port ${PORT}`);
 });

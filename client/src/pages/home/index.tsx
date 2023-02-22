@@ -1,6 +1,6 @@
+import { Modal } from 'antd';
 import cls from 'classnames';
 import { useEffect, useState } from 'react';
-import ReactModal from 'react-modal';
 import { useSelector } from 'react-redux';
 import ActivationModal from '../../components/activation-modal';
 import Header from '../../components/header';
@@ -28,21 +28,6 @@ const Home = () => {
     setActivationModal(false);
     document.body.style.overflow = 'unset';
   };
-  const modalStyles = {
-    overlay: {
-      borderRadius: '10px',
-      border: 'none',
-      zIndex: 1,
-    },
-    content: {
-      borderRadius: '10px',
-      maxHeight: activeToken === token ? '215px' : '115px',
-      maxWidth: '350px',
-      border: 'none',
-      boxShadow: '0 0 5px var(--shadow-1)',
-      margin: 'auto',
-    },
-  };
 
   useEffect(() => {
     if (!user.verified) {
@@ -55,12 +40,12 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <ReactModal isOpen={activationModal} style={modalStyles}>
+      <Modal centered open={activationModal} closable={false} footer={null}>
         <ActivationModal
           onClose={handleClose}
           token={activeToken ? (activeToken === token ? activeToken : '') : ''}
         />
-      </ReactModal>
+      </Modal>
       <Header />
       <HomeLeft />
       <div className={cls(styles.middle)}>

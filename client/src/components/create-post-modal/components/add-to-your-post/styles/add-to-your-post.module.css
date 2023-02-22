@@ -1,0 +1,23 @@
+.container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+.addPosts {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.addPost {
+  cursor: pointer;
+  display: flex;
+  padding: 5px;
+  border-radius: 50%;
+}
+.addPost:hover {
+  background-color: var(--bg-secondary);
+}

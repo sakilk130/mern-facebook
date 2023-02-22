@@ -1,0 +1,115 @@
+.imagesWrap {
+  height: 250px;
+  background-color: var(--bg-secondary);
+  padding: 10px;
+  border-radius: 5px;
+  overflow-y: auto;
+}
+.images {
+  height: 100%;
+}
+.exitBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+.exitBtn i {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.addPhoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.addPhotoWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  gap: 10px;
+}
+.imagesWrap span {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: var(--color-secondary);
+}
+.imagesWrap2 {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--bg-secondary);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.iconWithText {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.addWithPhoneBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-third);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.previewActions {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background: var(--bg-third);
+  padding: 5px;
+  border-radius: 5px;
+}
+.editBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-third);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.editAndAddBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.addPhotoBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-third);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.previewImages1 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+}
+.previewImages2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
