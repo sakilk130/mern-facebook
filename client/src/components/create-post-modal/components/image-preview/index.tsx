@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import EmojiSection from '../emoji-section';
 import styles from './styles/image-preview.module.css';
+import cls from 'classnames';
 
 interface IImagePreview {
   text: string;
@@ -8,6 +9,7 @@ interface IImagePreview {
   firstName: string;
   images: any;
   setImages: (images: any) => void;
+  setShowPreview: (showPreview: boolean) => void;
 }
 const ImagePreview = ({
   firstName,
@@ -15,6 +17,7 @@ const ImagePreview = ({
   text,
   images,
   setImages,
+  setShowPreview,
 }: IImagePreview) => {
   const imageRef = useRef<HTMLInputElement>(null);
   const handleChange = (e: any) => {
@@ -69,7 +72,7 @@ const ImagePreview = ({
                 </button>
               </div>
               <div
-                className="small_white_circle"
+                className={styles.exitBtn}
                 onClick={() => {
                   setImages([]);
                 }}
@@ -77,7 +80,13 @@ const ImagePreview = ({
                 <i className="exit_icon"></i>
               </div>
             </div>
-            <div className={styles.previewImages}>
+            <div
+              className={cls(
+                images.length === 1
+                  ? styles.previewImages1
+                  : styles.previewImages2,
+              )}
+            >
               {images.map((img: any, i: number) => (
                 <img className={styles.image} src={img} key={i} alt="" />
               ))}
@@ -85,7 +94,10 @@ const ImagePreview = ({
           </div>
         ) : (
           <div className={styles.images}>
-            <div className={styles.exitBtn}>
+            <div
+              className={styles.exitBtn}
+              onClick={() => setShowPreview(false)}
+            >
               <i className="exit_icon"></i>
             </div>
             <div

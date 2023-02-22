@@ -2,7 +2,6 @@ import { Modal } from 'antd';
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
 import Cookie from 'js-cookie';
 import { useEffect, useState } from 'react';
-import ReactModal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
@@ -16,7 +15,6 @@ import { IFormValues, initialValues, validationSchema } from './formik/formik';
 import styles from './styles/login.module.css';
 
 const Login = () => {
-  ReactModal.setAppElement('#root');
   const navigate = useNavigate();
   const dispatch: Dispatch<UserActionTypes> = useDispatch();
   const [showRegisterModal, setShowRegisterModal] = useState(false);

@@ -3,6 +3,7 @@
   background-color: var(--bg-secondary);
   padding: 10px;
   border-radius: 5px;
+  overflow-y: auto;
 }
 .images {
   height: 100%;
@@ -62,10 +63,15 @@
   cursor: pointer;
 }
 .previewActions {
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  background: var(--bg-third);
+  padding: 5px;
+  border-radius: 5px;
 }
 .editBtn {
   display: flex;
@@ -92,7 +98,12 @@
   cursor: pointer;
   border: none;
 }
-.previewImages {
+.previewImages1 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+}
+.previewImages2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;

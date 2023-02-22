@@ -2,12 +2,15 @@ import React, { memo } from 'react';
 import { Dots, Feeling, Photo } from '../../../../svg';
 import styles from './styles/add-to-your-post.module.css';
 
-const AddToYourPost = () => {
+interface IAddToYourPost {
+  setShowPreview: (value: boolean) => void;
+}
+const AddToYourPost = ({ setShowPreview }: IAddToYourPost) => {
   return (
     <div className={styles.container}>
       <h4>Add to your post</h4>
       <div className={styles.addPosts}>
-        <div className={styles.addPost}>
+        <div className={styles.addPost} onClick={() => setShowPreview(true)}>
           <Photo color="#45bd62" />
         </div>
         <div className={styles.addPost}>

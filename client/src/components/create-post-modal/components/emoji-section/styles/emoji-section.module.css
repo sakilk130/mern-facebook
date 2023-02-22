@@ -12,11 +12,10 @@
   cursor: pointer;
 }
 .emojiPickerView {
-  position: fixed;
-  top: 120px;
-  right: 50px;
+  position: absolute;
+  top: -55px;
+  right: -10px;
 }
-
 .textarea {
   margin-top: 10px;
   width: 100%;
