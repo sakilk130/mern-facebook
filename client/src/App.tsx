@@ -11,7 +11,7 @@ import PublicRoute from './routes/PublicRoute';
 function App() {
   return (
     <BrowserRouter>
-      <CreatePostModal />
+      {/* <CreatePostModal /> */}
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />

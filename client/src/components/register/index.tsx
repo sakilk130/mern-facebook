@@ -75,16 +75,6 @@ const RegisterCardModal = ({ onClose }: RegisterCardModalProps) => {
 
   return (
     <>
-      <header className={styles.modalHeader}>
-        <div>
-          <h2>Sign Up</h2>
-          <p>It's quick and easy.</p>
-        </div>
-        <button type="button" onClick={onClose} className={styles.closeBtn}>
-          <AiOutlineClose />
-        </button>
-      </header>
-      <hr />
       <FormikProvider value={formik}>
         <Form>
           <div className={styles.form}>

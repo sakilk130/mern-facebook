@@ -1,3 +1,4 @@
+import { Modal } from 'antd';
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
 import Cookie from 'js-cookie';
 import { useEffect, useState } from 'react';
@@ -53,20 +54,7 @@ const Login = () => {
     validationSchema,
     onSubmit,
   });
-  const modalStyles = {
-    overlay: {
-      borderRadius: '10px',
-      border: 'none',
-    },
-    content: {
-      borderRadius: '10px',
-      maxHeight: '570px',
-      maxWidth: '500px',
-      border: 'none',
-      boxShadow: '0 0 5px var(--shadow-1)',
-      margin: 'auto',
-    },
-  };
+
   const handleShow = () => {
     setShowRegisterModal(true);
   };
@@ -84,9 +72,20 @@ const Login = () => {
   return (
     <>
       <PageTitle title="Login | Facebook" />
-      <ReactModal isOpen={showRegisterModal} style={modalStyles}>
+      <Modal
+        title={
+          <div>
+            <h2>Sign Up</h2>
+            <p>It's quick and easy.</p>
+          </div>
+        }
+        centered
+        open={showRegisterModal}
+        onCancel={handleClose}
+        footer={null}
+      >
         <RegisterCardModal onClose={handleClose} />
-      </ReactModal>
+      </Modal>
       <div className={styles.container}>
         <div className={styles.left}>
           <img

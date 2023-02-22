@@ -61,3 +61,44 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.previewActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.editBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-third);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.editAndAddBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.addPhotoBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-third);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.previewImages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+.image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}

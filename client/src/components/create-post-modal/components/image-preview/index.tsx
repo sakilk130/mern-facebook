@@ -44,7 +44,46 @@ const ImagePreview = ({
           ref={imageRef}
           onChange={handleChange}
         />
-        {images && images.length > 0 ? null : (
+        {images && images.length > 0 ? (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <div className={styles.previewActions}>
+              <div className={styles.editAndAddBtn}>
+                <button type="button" className={styles.editBtn}>
+                  <i className="edit_icon"></i>
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  className={styles.addPhotoBtn}
+                  onClick={() => {
+                    imageRef?.current?.click();
+                  }}
+                >
+                  <i className="addPhoto_icon"></i>
+                  Add Photos/Videos
+                </button>
+              </div>
+              <div
+                className="small_white_circle"
+                onClick={() => {
+                  setImages([]);
+                }}
+              >
+                <i className="exit_icon"></i>
+              </div>
+            </div>
+            <div className={styles.previewImages}>
+              {images.map((img: any, i: number) => (
+                <img className={styles.image} src={img} key={i} alt="" />
+              ))}
+            </div>
+          </div>
+        ) : (
           <div className={styles.images}>
             <div className={styles.exitBtn}>
               <i className="exit_icon"></i>
