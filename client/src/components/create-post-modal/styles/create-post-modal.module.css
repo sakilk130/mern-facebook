@@ -58,3 +58,16 @@
 .postBtn:hover {
   opacity: 0.9;
 }
+.postBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.error {
+  color: #fff;
+  margin-top: 5px;
+  text-align: center;
+  background-color: red;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}

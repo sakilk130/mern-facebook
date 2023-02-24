@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, FormikProvider, useFormik } from 'formik';
 import Cookie from 'js-cookie';
 import { memo, useEffect, useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';

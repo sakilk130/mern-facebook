@@ -1,8 +1,16 @@
 import * as Yup from 'yup';
 
 export const CreatePostRequest = Yup.object().shape({
-  firstName: Yup.string()
-    .required('First name is required')
-    .min(2, 'First name must be at least 2 characters')
-    .max(50, 'First name must be at most 50 characters'),
+  text: Yup.string().trim(),
+  user: Yup.string().required('User is required').trim(),
+  images: Yup.array().of(Yup.string().trim()),
+  background: Yup.string().trim(),
+  comments: Yup.array().of(
+    Yup.object().shape({
+      comment: Yup.string().trim(),
+      image: Yup.string().trim(),
+      commentBy: Yup.string().trim(),
+      commentAt: Yup.date(),
+    })
+  ),
 });

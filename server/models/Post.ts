@@ -1,4 +1,4 @@
-import { ProfilePictureEnum } from 'enums/picture';
+import { ProfilePictureEnum } from '../enums/picture';
 import { model, Schema } from 'mongoose';
 import { IPost } from '../interfaces/post';
 
@@ -6,7 +6,11 @@ const PostSchema = new Schema<IPost>(
   {
     type: {
       type: String,
-      enum: ProfilePictureEnum || null,
+      enum: [
+        ProfilePictureEnum.ProfilePicture,
+        ProfilePictureEnum.CoverPicture,
+        null,
+      ],
       default: null,
     },
     text: {
@@ -48,4 +52,5 @@ const PostSchema = new Schema<IPost>(
 );
 
 const Post = model<IPost>('Post', PostSchema);
+
 export default Post;
