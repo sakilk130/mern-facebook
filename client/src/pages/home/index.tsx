@@ -10,15 +10,22 @@ import {
   HomeRight,
   Stories,
 } from '../../components/home';
+import { IPost } from '../../interfaces/post';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import styles from './styles/home.module.css';
 
+interface IPostWithState {
+  posts: IPost[];
+  loading: boolean;
+  error: string;
+}
 interface IHome {
   setShowModal: (showModal: boolean) => void;
+  postData: IPostWithState;
 }
 
-const Home = ({ setShowModal }: IHome) => {
+const Home = ({ setShowModal, postData: { error, loading, posts } }: IHome) => {
   const params = new URLSearchParams(window.location.search);
   const activeToken = params.get('token');
   const [activationModal, setActivationModal] = useState(false);
@@ -55,6 +62,12 @@ const Home = ({ setShowModal }: IHome) => {
       <div className={cls(styles.middle)}>
         <Stories />
         <CreatePost setShowModal={setShowModal} />
+        {error && <div>{error}</div>}
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          posts.map((post) => <div key={post._id}>{post._id}</div>)
+        )}
       </div>
       <HomeRight />
     </div>
