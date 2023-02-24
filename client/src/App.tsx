@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import CreatePostModal from './components/create-post-modal';
-import { IUser } from './interfaces/user';
 import Home from './pages/home';
 import Login from './pages/login';
 import Profile from './pages/profile';
@@ -14,7 +13,7 @@ import PublicRoute from './routes/PublicRoute';
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { user } = useSelector((state: AppState) => state.user as IUser);
+  const user = useSelector((state: AppState) => state.user);
 
   return (
     <BrowserRouter>
