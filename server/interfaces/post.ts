@@ -1,4 +1,4 @@
-import { ProfilePictureEnum } from 'enums/picture';
+import { ProfilePictureEnum } from '../enums/picture';
 import {
   AnyArray,
   SchemaTypeOptions,
@@ -14,7 +14,11 @@ export interface IComment {
 }
 
 export interface IPost {
-  type: ProfilePictureEnum | null;
+  type: [
+    ProfilePictureEnum.ProfilePicture,
+    ProfilePictureEnum.CoverPicture,
+    null
+  ];
   text: string;
   images:
     | AnyArray<StringSchemaDefinition>
