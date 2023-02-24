@@ -6,7 +6,7 @@ import { createPost, getAllPosts } from '../../controllers/post';
 
 const router = express.Router();
 
-router.post('/create', RequestValidator(CreatePostRequest), auth, createPost);
-router.get('/get', auth, getAllPosts);
+router.post('/', RequestValidator(CreatePostRequest), auth, createPost);
+router.get('/', auth, getAllPosts);
 
 export default router;

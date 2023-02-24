@@ -8,7 +8,7 @@ const app = express();
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
-app.use('/post', postRoutes);
+app.use('/posts', postRoutes);
 app.use('/upload', uploadRoutes);
 
 export default app;
