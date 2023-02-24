@@ -12,6 +12,7 @@ const CreatePostModal = () => {
   const [text, setText] = useState<string>('');
   const [showPreview, setShowPreview] = useState<boolean>(false);
   const [images, setImages] = useState([]);
+  const [background, setBackground] = useState<string>('');
   const { user } = useSelector((state: AppState) => state.user as IUser);
 
   return (
@@ -37,6 +38,8 @@ const CreatePostModal = () => {
             setText={setText}
             text={text}
             firstName={user.firstName}
+            background={background}
+            setBackground={setBackground}
           />
         ) : (
           <ImagePreview
