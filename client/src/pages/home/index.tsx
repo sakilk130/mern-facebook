@@ -14,7 +14,11 @@ import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import styles from './styles/home.module.css';
 
-const Home = () => {
+interface IHome {
+  setShowModal: (showModal: boolean) => void;
+}
+
+const Home = ({ setShowModal }: IHome) => {
   const params = new URLSearchParams(window.location.search);
   const activeToken = params.get('token');
   const [activationModal, setActivationModal] = useState(false);
@@ -50,7 +54,7 @@ const Home = () => {
       <HomeLeft />
       <div className={cls(styles.middle)}>
         <Stories />
-        <CreatePost />
+        <CreatePost setShowModal={setShowModal} />
       </div>
       <HomeRight />
     </div>

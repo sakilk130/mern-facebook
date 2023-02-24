@@ -8,7 +8,12 @@ import EmojiSection from './components/emoji-section';
 import ImagePreview from './components/image-preview';
 import styles from './styles/create-post-modal.module.css';
 
-const CreatePostModal = () => {
+interface ICreatePostModal {
+  setShowModal: (showModal: boolean) => void;
+  showModal: boolean;
+}
+
+const CreatePostModal = ({ setShowModal, showModal }: ICreatePostModal) => {
   const [text, setText] = useState<string>('');
   const [showPreview, setShowPreview] = useState<boolean>(false);
   const [images, setImages] = useState([]);
@@ -16,7 +21,13 @@ const CreatePostModal = () => {
   const { user } = useSelector((state: AppState) => state.user as IUser);
 
   return (
-    <Modal title="Create Post" centered open={true} footer={null}>
+    <Modal
+      title="Create Post"
+      centered
+      open={showModal}
+      footer={null}
+      onCancel={() => setShowModal(false)}
+    >
       <div className={styles.modalBody}>
         <div className={styles.profileInfo}>
           <img

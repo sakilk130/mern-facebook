@@ -5,11 +5,18 @@ import { AppState } from '../../../../redux/store';
 import { Feeling, LiveVideo, Photo } from '../../../../svg';
 import styles from './styles/create-post.module.css';
 
-const CreatePost = () => {
+interface ICreatePost {
+  setShowModal: (showModal: boolean) => void;
+}
+
+const CreatePost = ({ setShowModal }: ICreatePost) => {
   const { user } = useSelector((state: AppState) => state.user as IUser);
   return (
     <div className={cls(styles.container)}>
-      <div className={cls(styles.inputField)}>
+      <div
+        className={cls(styles.inputField)}
+        onClick={() => setShowModal(true)}
+      >
         <img src={user.picture} alt="" />
         <div>What's on your mind, {user.firstName}</div>
       </div>
