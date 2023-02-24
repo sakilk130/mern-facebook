@@ -3,6 +3,7 @@ import { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PulseLoader } from 'react-spinners';
 import axiosInstance from '../../config/axios';
+import dataURItoBlob from '../../helpers/dataURIToBlob';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import AddToYourPost from './components/add-to-your-post';
@@ -28,16 +29,63 @@ const CreatePostModal = ({ setShowModal, showModal }: ICreatePostModal) => {
   const onCreatedPost = async () => {
     try {
       setLoading(true);
-      const post = await axiosInstance.post('/post/create', {
-        background,
-        text,
-        user: user.id,
-      });
-      setLoading(false);
-      if (post) {
-        setShowModal(false);
+      if (background === '' && text === '' && images.length === 0) {
+        setError('Please add some content to your post');
+        setTimeout(() => {
+          setError('');
+        }, 3000);
+        setLoading(false);
+        return;
+      }
+      if (images.length > 0) {
+        const postImages = images.map((image: any) => dataURItoBlob(image));
+        const path = `${user.userName}/post images`;
+        const formData = new FormData();
+        formData.append('path', path);
+        postImages.forEach((image: any) => {
+          formData.append('images', image);
+        });
+        const uploadImages = await axiosInstance.post(
+          '/upload/images',
+          formData,
+        );
+        if (uploadImages) {
+          const images = uploadImages.data.data.map((image: any) => image);
+          const post = await axiosInstance.post('/post/create', {
+            images,
+            text,
+            user: user.id,
+          });
+          setLoading(false);
+          if (post) {
+            setShowModal(false);
+          } else {
+            setError('Something went wrong');
+          }
+        }
+      } else if (background) {
+        const post = await axiosInstance.post('/post/create', {
+          background,
+          text,
+          user: user.id,
+        });
+        setLoading(false);
+        if (post) {
+          setShowModal(false);
+        } else {
+          setError('Something went wrong');
+        }
       } else {
-        setError('Something went wrong');
+        const post = await axiosInstance.post('/post/create', {
+          text,
+          user: user.id,
+        });
+        setLoading(false);
+        if (post) {
+          setShowModal(false);
+        } else {
+          setError('Something went wrong');
+        }
       }
     } catch (error: any) {
       setLoading(false);

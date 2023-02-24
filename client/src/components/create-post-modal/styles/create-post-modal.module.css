@@ -58,6 +58,10 @@
 .postBtn:hover {
   opacity: 0.9;
 }
+.postBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .error {
   color: #fff;
   margin-top: 5px;
