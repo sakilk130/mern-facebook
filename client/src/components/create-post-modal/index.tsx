@@ -51,7 +51,7 @@ const CreatePostModal = ({ setShowModal, showModal }: ICreatePostModal) => {
         );
         if (uploadImages) {
           const images = uploadImages.data.data.map((image: any) => image);
-          const post = await axiosInstance.post('/post/create', {
+          const post = await axiosInstance.post('/posts', {
             images,
             text,
             user: user.id,
@@ -64,7 +64,7 @@ const CreatePostModal = ({ setShowModal, showModal }: ICreatePostModal) => {
           }
         }
       } else if (background) {
-        const post = await axiosInstance.post('/post/create', {
+        const post = await axiosInstance.post('/posts', {
           background,
           text,
           user: user.id,
@@ -76,7 +76,7 @@ const CreatePostModal = ({ setShowModal, showModal }: ICreatePostModal) => {
           setError('Something went wrong');
         }
       } else {
-        const post = await axiosInstance.post('/post/create', {
+        const post = await axiosInstance.post('/posts', {
           text,
           user: user.id,
         });

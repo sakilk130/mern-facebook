@@ -16,3 +16,21 @@ export const createPost = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getAllPosts = async (_: Request, res: Response) => {
+  try {
+    const posts = await Post.find()
+      .populate('user', 'firstName lastName gender userName picture')
+      .sort({ createdAt: -1 })
+      .lean();
+    return res.status(200).json({
+      success: true,
+      data: posts,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};

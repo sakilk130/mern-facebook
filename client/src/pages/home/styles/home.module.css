@@ -1,7 +1,7 @@
 .container {
   position: relative;
   min-height: 100vh;
-  background: var(--bg-secondary);
+  background-color: var(--bg-secondary) !important;
 }
 .middle {
   background: unset;
@@ -9,6 +9,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  background-color: var(--bg-secondary) !important;
 }
 
 @media (max-width: 1175px) {
