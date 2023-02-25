@@ -1,9 +1,11 @@
 import cls from 'classnames';
 import moment from 'moment';
+import { useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { MdPublic } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { IPost } from '../../interfaces/post';
+import ReactPopup from './components';
 import styles from './styles/post.module.css';
 
 interface IPostProps {
@@ -11,6 +13,8 @@ interface IPostProps {
 }
 
 const Post = ({ post }: IPostProps) => {
+  const [showReactPopup, setShowReactPopup] = useState(false);
+
   return (
     <div className={cls(styles.container)}>
       <div className={styles.header}>
@@ -64,8 +68,8 @@ const Post = ({ post }: IPostProps) => {
           </div>
         ) : (
           <>
-            <div className="">{post.text}</div>
-            {post.images && post.images.length && (
+            <div className={styles.text}>{post.text}</div>
+            {post.images && post.images.length ? (
               <div
                 className={cls(
                   post.images.length === 1
@@ -93,9 +97,48 @@ const Post = ({ post }: IPostProps) => {
                   </div>
                 )}
               </div>
-            )}
+            ) : null}
           </>
         )}
+      </div>
+      <div className={styles.footer}>
+        <div className={styles.likeAndShare}>
+          <div className={styles.footerLeft}></div>
+          <div className={styles.footerRight}>
+            <span>13 comments</span> <span>13 shares</span>
+          </div>
+        </div>
+        <ReactPopup
+          setShowReactPopup={setShowReactPopup}
+          showReactPopup={showReactPopup}
+        />
+        <hr className={styles.hr} />
+        <div className={styles.footerIcons}>
+          <div
+            className={styles.icon}
+            onMouseOver={() => {
+              setTimeout(() => {
+                setShowReactPopup(true);
+              }, 500);
+            }}
+            onMouseLeave={() => {
+              setTimeout(() => {
+                setShowReactPopup(false);
+              }, 500);
+            }}
+          >
+            <i className="like_icon"></i>
+            <span>Like</span>
+          </div>
+          <div className={styles.icon}>
+            <i className="comment_icon"></i>
+            <span>Comment</span>
+          </div>
+          <div className={styles.icon}>
+            <i className="share_icon"></i>
+            <span>Share</span>
+          </div>
+        </div>
       </div>
     </div>
   );
