@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      console.log('first');
       const getAllPosts = async () => {
         try {
           setLoading(true);
