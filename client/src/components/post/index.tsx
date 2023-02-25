@@ -5,7 +5,8 @@ import { BsThreeDots } from 'react-icons/bs';
 import { MdPublic } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { IPost } from '../../interfaces/post';
-import ReactPopup from './components';
+import CreateComment from './components/create-comment';
+import ReactPopup from './components/react-popup';
 import styles from './styles/post.module.css';
 
 interface IPostProps {
@@ -139,6 +140,12 @@ const Post = ({ post }: IPostProps) => {
             <span>Share</span>
           </div>
         </div>
+        <hr />
+        <CreateComment
+          user={{
+            picture: typeof post.user === 'object' ? post.user.picture : '',
+          }}
+        />
       </div>
     </div>
   );
