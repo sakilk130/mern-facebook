@@ -5,6 +5,7 @@
 }
 body {
   font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  background-color: var(--bg-secondary);
 }
 html {
   overflow-y: scroll;

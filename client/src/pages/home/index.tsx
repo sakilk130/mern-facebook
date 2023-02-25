@@ -10,6 +10,7 @@ import {
   HomeRight,
   Stories,
 } from '../../components/home';
+import Post from '../../components/post';
 import { IPost } from '../../interfaces/post';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
@@ -66,7 +67,7 @@ const Home = ({ setShowModal, postData: { error, loading, posts } }: IHome) => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          posts.map((post) => <div key={post._id}>{post._id}</div>)
+          posts.map((post) => <Post key={post._id} post={post} />)
         )}
       </div>
       <HomeRight />

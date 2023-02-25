@@ -21,6 +21,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
+      console.log('first');
       const getAllPosts = async () => {
         try {
           setLoading(true);
@@ -38,8 +39,7 @@ function App() {
       };
       getAllPosts();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   return (
     <BrowserRouter>
