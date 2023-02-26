@@ -1,0 +1,19 @@
+.container {
+  position: absolute;
+  background: var(--bg-primary);
+  width: 300px;
+  box-shadow: 1px 0 2px var(--shadow-1);
+  border-radius: 10px;
+  position: absolute;
+  top: 3.1rem;
+  right: 10px;
+  z-index: 99;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 19px;
+  padding: 10px;
+}
+.hr {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+}
