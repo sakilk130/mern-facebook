@@ -9,6 +9,7 @@ import {
   ArrowDown,
   Friends,
   Gaming,
+  Home,
   HomeActive,
   Logo,
   Market,
@@ -23,7 +24,11 @@ import SearchMenu from './components/search-menu';
 import UserMenu from './components/user-menu';
 import styles from './styles/header.module.css';
 
-const Header = () => {
+interface IHeader {
+  page?: string;
+}
+
+const Header = ({ page }: IHeader) => {
   const allMenuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const [showSearchMenu, setShowSearchMenu] = useState(false);
@@ -63,9 +68,13 @@ const Header = () => {
       <div className={styles.headerMiddle}>
         <Link
           to="/"
-          className={cls(styles.middleIcon, styles.active, styles.homeIcon)}
+          className={cls(
+            styles.middleIcon,
+            page === 'home' && styles.active,
+            styles.homeIcon,
+          )}
         >
-          <HomeActive />
+          {page === 'home' ? <HomeActive /> : <Home color={color} />}
         </Link>
         <Link to="/" className={cls(styles.middleIcon)}>
           <Friends color={color} />
@@ -85,7 +94,13 @@ const Header = () => {
         </Link>
       </div>
       <div className={styles.headerRight}>
-        <Link to="/profile" className={cls(styles.profile)}>
+        <Link
+          to="/profile"
+          className={cls(
+            styles.profile,
+            page === 'profile' && styles.activeProfile,
+          )}
+        >
           <img src={user.picture} alt="" className={cls(styles.image)} />
           <span>{user?.firstName}</span>
         </Link>
