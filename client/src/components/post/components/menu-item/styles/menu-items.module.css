@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.menu i {
+  font-size: 16px;
+  font-style: 600;
+}
+.menu:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.menuSub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #999;
+}

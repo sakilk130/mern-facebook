@@ -1,5 +1,13 @@
 import { ProfilePictureEnum } from '../enums/picture';
-import { User } from './user';
+export interface User {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  verified: boolean;
+  picture: string;
+}
 
 export interface IComment {
   comment: string;

@@ -6,6 +6,7 @@ import { MdPublic } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { IPost } from '../../interfaces/post';
 import CreateComment from './components/create-comment';
+import PostMenu from './components/post-menu';
 import ReactPopup from './components/react-popup';
 import styles from './styles/post.module.css';
 
@@ -15,6 +16,7 @@ interface IPostProps {
 
 const Post = ({ post }: IPostProps) => {
   const [showReactPopup, setShowReactPopup] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <div className={cls(styles.container)}>
@@ -53,7 +55,10 @@ const Post = ({ post }: IPostProps) => {
             </div>
           </div>
         </div>
-        <div className={styles.headerRight}>
+        <div
+          className={styles.headerRight}
+          onClick={() => setShowMenu(!showMenu)}
+        >
           <BsThreeDots />
         </div>
       </div>
@@ -147,6 +152,13 @@ const Post = ({ post }: IPostProps) => {
           }}
         />
       </div>
+      {showMenu && (
+        <PostMenu
+          setShowMenu={setShowMenu}
+          imagesLength={post.images ? post.images.length : 0}
+          userId={typeof post.user === 'object' ? post.user?._id : null}
+        />
+      )}
     </div>
   );
 };
