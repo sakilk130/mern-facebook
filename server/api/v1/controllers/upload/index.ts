@@ -52,3 +52,33 @@ export const uploadToCloudinary = async (file: any, path: string) => {
     );
   });
 };
+
+export const listImages = async (req: Request, res: Response) => {
+  try {
+    const {
+      path,
+      sort,
+      max,
+    }: {
+      path: string;
+      sort: 'asc' | 'desc';
+      max: number;
+    } = req.body;
+
+    const result = await cloudinary.v2.search
+      .expression(`${path}`)
+      .sort_by('created_at', `${sort}`)
+      .max_results(max)
+      .execute();
+
+    return res.status(200).json({
+      success: true,
+      data: result,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.error.message,
+    });
+  }
+};
