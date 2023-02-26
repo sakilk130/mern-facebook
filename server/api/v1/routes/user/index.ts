@@ -1,9 +1,8 @@
 import express from 'express';
+import { getProfile } from '../../controllers/user';
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.send('Hello World!');
-});
+router.get('/get-profile/:username', getProfile);
 
 export default router;
