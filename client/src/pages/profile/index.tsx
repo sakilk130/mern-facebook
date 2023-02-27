@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cover from '../../components/cover';
 import Header from '../../components/header';
+import PeopleYouMayKnow from '../../components/people-you-may-know';
 import ProfileMenu from '../../components/profile-menu';
 import ProfilePictureInfo from '../../components/profile-picture-info';
 import axiosInstance from '../../config/axios';
@@ -51,6 +52,13 @@ const Profile = () => {
           <Cover cover={profile?.cover ?? null} />
           <ProfilePictureInfo profile={profile} />
           <ProfileMenu />
+        </div>
+      </div>
+      <div className={styles.profile_bottom}>
+        <div className={styles.profileContainer}>
+          <div className={styles.bottom_container}>
+            <PeopleYouMayKnow />
+          </div>
         </div>
       </div>
     </div>

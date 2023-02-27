@@ -9,3 +9,10 @@
   max-width: 945px;
   margin: 0 auto;
 }
+.profile_bottom {
+  margin-top: 1px;
+  background: var(--bg-secondary);
+}
+.bottom_container {
+  padding: 10px 2.2rem;
+}
