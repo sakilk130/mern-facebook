@@ -16,3 +16,30 @@
 .bottom_container {
   padding: 10px 2.2rem;
 }
+.profile_grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 10px;
+}
+.profile_right {
+  margin-top: 10px;
+}
+.no_posts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-secondary);
+}
+.posts {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .profile_grid {
+    grid-template-columns: 1fr;
+    width: 95%;
+  }
+}

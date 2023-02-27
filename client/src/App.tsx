@@ -64,8 +64,14 @@ function App() {
               />
             }
           />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:username" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={<Profile setShowModal={setShowModal} />}
+          />
+          <Route
+            path="/profile/:username"
+            element={<Profile setShowModal={setShowModal} />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
