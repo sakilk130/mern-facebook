@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cover from '../../components/cover';
 import Header from '../../components/header';
+import ProfileMenu from '../../components/profile-menu';
+import ProfilePictureInfo from '../../components/profile-picture-info';
 import axiosInstance from '../../config/axios';
 import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
@@ -12,8 +14,8 @@ const Profile = () => {
   const { username } = useParams();
   const navigate = useNavigate();
   const [profile, setProfile] = useState<any>(null);
-  const [_, setLoading] = useState<boolean>(false);
-  const [__, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   const { user } = useSelector((state: AppState) => state.user as IUser);
   const userName = username === undefined ? user.userName : username;
@@ -25,7 +27,7 @@ const Profile = () => {
         const { data } = await axiosInstance.get(
           `/user/get-profile/${userName}`,
         );
-        setProfile(data.data);
+        setProfile(data?.data);
         setLoading(false);
       } catch (error: any) {
         setLoading(false);
@@ -47,6 +49,8 @@ const Profile = () => {
       <div className={styles.profile}>
         <div className={styles.profileContainer}>
           <Cover cover={profile?.cover ?? null} />
+          <ProfilePictureInfo profile={profile} />
+          <ProfileMenu />
         </div>
       </div>
     </div>
