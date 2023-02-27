@@ -12,6 +12,7 @@ import styles from './styles/post.module.css';
 
 interface IPostProps {
   post: IPost;
+  user?: any;
 }
 
 const Post = ({ post }: IPostProps) => {

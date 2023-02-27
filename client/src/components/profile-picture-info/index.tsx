@@ -2,8 +2,9 @@ import { memo } from 'react';
 import styles from './styles/profile-picture-info.module.css';
 interface IProfilePictureInfo {
   profile: any | null;
+  visitor: boolean;
 }
-const ProfilePictureInfo = ({ profile }: IProfilePictureInfo) => {
+const ProfilePictureInfo = ({ profile, visitor }: IProfilePictureInfo) => {
   return (
     <>
       {profile && (
@@ -17,9 +18,11 @@ const ProfilePictureInfo = ({ profile }: IProfilePictureInfo) => {
                   backgroundImage: `url(${profile.picture})`,
                 }}
               ></div>
-              <div className={styles.profile_circle}>
-                <i className="camera_filled_icon"></i>
-              </div>
+              {!visitor && (
+                <div className={styles.profile_circle}>
+                  <i className="camera_filled_icon"></i>
+                </div>
+              )}
             </div>
             <div className={styles.profile_w_col}>
               <div className={styles.profile_name}>
@@ -30,20 +33,22 @@ const ProfilePictureInfo = ({ profile }: IProfilePictureInfo) => {
               <div className={styles.profile_friend_imgs}></div>
             </div>
           </div>
-          <div className={styles.profile_w_right}>
-            <div className="blue_btn">
-              <img
-                src="../../../icons/plus.png"
-                alt=""
-                className={styles.invert}
-              />
-              <span>Add to story</span>
+          {!visitor && (
+            <div className={styles.profile_w_right}>
+              <div className="blue_btn">
+                <img
+                  src="../../../icons/plus.png"
+                  alt=""
+                  className={styles.invert}
+                />
+                <span>Add to story</span>
+              </div>
+              <div className="gray_btn">
+                <i className="edit_icon"></i>
+                <span>Edit profile</span>
+              </div>
             </div>
-            <div className="gray_btn">
-              <i className="edit_icon"></i>
-              <span>Edit profile</span>
-            </div>
-          </div>
+          )}
         </div>
       )}
     </>

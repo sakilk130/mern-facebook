@@ -55,7 +55,10 @@
 .invert {
   filter: invert(100%);
 }
-
+.othername {
+  color: var(--color-secondary);
+  font-size: 20px;
+}
 @media (max-width: 900px) {
   .profile_w_left {
     flex-direction: column;
