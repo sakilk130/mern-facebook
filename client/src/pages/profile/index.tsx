@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Cover from '../../components/cover';
+import GridPosts from '../../components/grid-posts';
+import GridPost from '../../components/grid-posts';
 import Header from '../../components/header';
+import { CreatePost } from '../../components/home';
 import PeopleYouMayKnow from '../../components/people-you-may-know';
 import ProfileMenu from '../../components/profile-menu';
 import ProfilePictureInfo from '../../components/profile-picture-info';
@@ -11,7 +14,10 @@ import { IUser } from '../../interfaces/user';
 import { AppState } from '../../redux/store';
 import styles from './styles/profile.module.css';
 
-const Profile = () => {
+interface IProfile {
+  setShowModal: (value: boolean) => void;
+}
+const Profile = ({ setShowModal }: IProfile) => {
   const { username } = useParams();
   const navigate = useNavigate();
   const [profile, setProfile] = useState<any>(null);
@@ -58,6 +64,13 @@ const Profile = () => {
         <div className={styles.profileContainer}>
           <div className={styles.bottom_container}>
             <PeopleYouMayKnow />
+            <div className={styles.profile_grid}>
+              <div className={styles.profile_left}></div>
+              <div className={styles.profile_right}>
+                <CreatePost profile setShowModal={setShowModal} />
+                <GridPosts />
+              </div>
+            </div>
           </div>
         </div>
       </div>

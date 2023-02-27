@@ -7,9 +7,10 @@ import styles from './styles/create-post.module.css';
 
 interface ICreatePost {
   setShowModal: (showModal: boolean) => void;
+  profile?: boolean;
 }
 
-const CreatePost = ({ setShowModal }: ICreatePost) => {
+const CreatePost = ({ setShowModal, profile }: ICreatePost) => {
   const { user } = useSelector((state: AppState) => state.user as IUser);
   return (
     <div className={cls(styles.container)}>
@@ -31,6 +32,17 @@ const CreatePost = ({ setShowModal }: ICreatePost) => {
         <div className={cls(styles.postIcon)}>
           <Feeling color="#f7b928" /> Feeling/Activity
         </div>
+        {profile ? (
+          <div className={styles.postIcon}>
+            <i className="lifeEvent_icon"></i>
+            Life Event
+          </div>
+        ) : (
+          <div className={styles.postIcon}>
+            <Feeling color="#f7b928" />
+            Feeling/Activity
+          </div>
+        )}
       </div>
     </div>
   );
