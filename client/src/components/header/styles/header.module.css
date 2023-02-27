@@ -137,6 +137,12 @@
 .activeMenu svg {
   fill: var(--blue-color);
 }
+.activeProfile {
+  background: var(--light-blue-color);
+  border-radius: 50px;
+  color: var(--blue-color);
+}
+
 @media (max-width: 856px) {
   .search input {
     display: none;

@@ -58,7 +58,7 @@ const Home = ({ setShowModal, postData: { error, loading, posts } }: IHome) => {
           token={activeToken ? (activeToken === token ? activeToken : '') : ''}
         />
       </Modal>
-      <Header />
+      <Header page="home" />
       <HomeLeft />
       <div className={cls(styles.middle)}>
         <Stories />

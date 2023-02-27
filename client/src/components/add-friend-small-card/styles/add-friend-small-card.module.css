@@ -1,0 +1,50 @@
+.addfriendCard {
+  position: relative;
+  height: 100%;
+  width: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+.addfriend_imgsmall {
+  width: 100%;
+  height: 140px;
+}
+.addfriend_imgsmall img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.addfriend_infos {
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.addfriend_name {
+  font-size: 16px;
+  font-weight: 600;
+}
+.light_blue_btn {
+  border: none;
+  outline: none;
+  background: var(--light-blue-color);
+  padding: 8.5px 12px;
+  border-radius: 7px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.light_blue_btn img {
+  width: 20px;
+}
+.light_blue_btn {
+  color: var(--blue-color);
+}
