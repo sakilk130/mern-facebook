@@ -6,5 +6,5 @@ import { uploadImages, listImages } from '../../controllers/upload';
 const router = express.Router();
 
 router.post('/images', auth, uploadImagesMiddleware, uploadImages);
-router.get('/list-images', listImages);
+router.post('/list-images', auth, listImages);
 export default router;

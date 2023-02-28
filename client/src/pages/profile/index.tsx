@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Cover from '../../components/cover';
+import Friends from '../../components/friends';
 import GridPosts from '../../components/grid-posts';
 import Header from '../../components/header';
 import { CreatePost } from '../../components/home';
 import PeopleYouMayKnow from '../../components/people-you-may-know';
+import Photos from '../../components/photos';
 import Post from '../../components/post';
 import ProfileMenu from '../../components/profile-menu';
 import ProfilePictureInfo from '../../components/profile-picture-info';
@@ -66,7 +68,26 @@ const Profile = ({ setShowModal }: IProfile) => {
           <div className={styles.bottom_container}>
             <PeopleYouMayKnow />
             <div className={styles.profile_grid}>
-              <div className={styles.profile_left}></div>
+              <div className={styles.profile_left}>
+                <Photos userName={userName} />
+                <Friends friends={profile?.friends} />
+                <div className={styles.relative_fb_copyright}>
+                  <Link to="/">Privacy </Link>
+                  <span>. </span>
+                  <Link to="/">Terms </Link>
+                  <span>. </span>
+                  <Link to="/">Advertising </Link>
+                  <span>. </span>
+                  <Link to="/">
+                    Ad Choices <i className="ad_choices_icon"></i>{' '}
+                  </Link>
+                  <span>. </span>
+                  <Link to="/"></Link>Cookies <span>. </span>
+                  <Link to="/">More </Link>
+                  <span>. </span> <br />
+                  Meta © 2022
+                </div>
+              </div>
               <div className={styles.profile_right}>
                 <CreatePost profile setShowModal={setShowModal} />
                 <GridPosts />

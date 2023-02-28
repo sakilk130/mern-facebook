@@ -36,6 +36,13 @@
   margin-top: 1rem;
   width: 100%;
 }
+.relative_fb_copyright {
+  position: relative;
+  width: 97%;
+  margin-top: 2rem;
+  font-size: 12px;
+  color: var(--color-secondary);
+}
 
 @media (max-width: 900px) {
   .profile_grid {
