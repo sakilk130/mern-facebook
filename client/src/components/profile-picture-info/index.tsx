@@ -1,12 +1,24 @@
-import { memo } from 'react';
+import { Modal } from 'antd';
+import { memo, useState } from 'react';
+import ProfilePictureUpdateModal from '../profile-picture-update-modal';
 import styles from './styles/profile-picture-info.module.css';
 interface IProfilePictureInfo {
   profile: any | null;
   visitor: boolean;
 }
 const ProfilePictureInfo = ({ profile, visitor }: IProfilePictureInfo) => {
+  const [showModal, setShowModal] = useState<boolean>(true);
   return (
     <>
+      <Modal
+        title="Upload Profile Picture"
+        centered
+        open={showModal}
+        onCancel={() => setShowModal(false)}
+        footer={null}
+      >
+        <ProfilePictureUpdateModal />
+      </Modal>
       {profile && (
         <div className={styles.profile_img_wrap}>
           <div className={styles.profile_w_left}>
