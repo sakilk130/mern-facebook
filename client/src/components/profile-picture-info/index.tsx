@@ -1,5 +1,5 @@
 import { Modal } from 'antd';
-import { memo, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import ProfilePictureUpdateModal from '../profile-picture-update-modal';
 import styles from './styles/profile-picture-info.module.css';
 interface IProfilePictureInfo {
@@ -8,6 +8,7 @@ interface IProfilePictureInfo {
 }
 const ProfilePictureInfo = ({ profile, visitor }: IProfilePictureInfo) => {
   const [showModal, setShowModal] = useState<boolean>(true);
+  const pRef = useRef(null);
   return (
     <>
       <Modal
@@ -17,7 +18,7 @@ const ProfilePictureInfo = ({ profile, visitor }: IProfilePictureInfo) => {
         onCancel={() => setShowModal(false)}
         footer={null}
       >
-        <ProfilePictureUpdateModal />
+        <ProfilePictureUpdateModal pRef={pRef} />
       </Modal>
       {profile && (
         <div className={styles.profile_img_wrap}>

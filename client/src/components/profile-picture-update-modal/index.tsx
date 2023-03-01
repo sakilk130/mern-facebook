@@ -3,7 +3,7 @@ import cls from 'classnames';
 import styles from './styles/profile-picture-update-modal.module.css';
 import UpdateImageView from './components/update-image-view';
 
-const ProfilePictureUpdateModal = () => {
+const ProfilePictureUpdateModal = ({ pRef }: any) => {
   const refInput = useRef<any>(null);
   const [image, setImage] = useState('');
   const [error, setError] = useState('');
@@ -64,7 +64,14 @@ const ProfilePictureUpdateModal = () => {
         </div>
       )}
       <div className={styles.old_pictures_wrap}></div>
-      {image && <UpdateImageView setImage={setImage} />}
+      {image && (
+        <UpdateImageView
+          setImage={setImage}
+          image={image}
+          pRef={pRef}
+          setError={setError}
+        />
+      )}
     </>
   );
 };
