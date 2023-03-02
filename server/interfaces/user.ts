@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { AnyArray, SchemaTypeOptions, StringSchemaDefinition } from 'mongoose';
 
 export interface AuthUser {
@@ -55,4 +56,8 @@ export interface User {
   search: AnyArray<StringSchemaDefinition> | undefined;
   details: Details;
   savedPosts: SavedPosts[];
+}
+
+export interface RequestWithUser extends Request {
+  user?: AuthUser;
 }

@@ -5,13 +5,10 @@ import { generateCode } from '../../../../helpers/generateCode';
 import { sendResetCode, sendValidationEmail } from '../../../../helpers/mailer';
 import { generateToken, verifyToken } from '../../../../helpers/token';
 import { validateUserName } from '../../../../helpers/validation';
-import { AuthUser } from '../../../../interfaces/user';
+import { AuthUser, RequestWithUser } from '../../../../interfaces/user';
 import Code from '../../../../models/Code';
 import User from '../../../../models/User';
 
-interface RequestWithUser extends Request {
-  user?: AuthUser;
-}
 
 export const register = async (
   req: Request,
